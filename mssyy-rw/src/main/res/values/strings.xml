@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LatteEC</string>
+    <string name="indexName">首页</string>
+    <string name="sortName">分 类</string>
+    <string name="icon_scan">{icon-scan}</string>
+    <string name="ss">搜索</string>
+    <string name="fa_bullhorn">{fa-bullhorn}</string>
+</resources>
