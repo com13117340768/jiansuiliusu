@@ -21,6 +21,8 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     public abstract LatteFragment setRootDelegate();
 
+    public static final String TAG = ProxyActivity.class.getSimpleName();
+
     boolean isGlobal = false;
     int result = 0;
 
