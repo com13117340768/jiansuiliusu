@@ -76,6 +76,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 tvDesc.setText(desc);
                 tvPrice.setText(String.valueOf(price));
                 tvCount.setText(String.valueOf(count));
+
                 Glide.with(mContext)
                         .load(thumb)
                         .apply(OPTIONS)
