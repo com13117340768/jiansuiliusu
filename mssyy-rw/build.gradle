@@ -40,4 +40,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation project(':ssyy-ui')
 
+    implementation 'com.android.support:design:27.1.1'
+
 }

@@ -51,10 +51,9 @@ public class VerticalListDelegate extends LatteFragment {
                 .url("sort_list.php")
                 .loader(getContext())
                 .success(response -> {
-                    final List<MultipleItemEntity> data =
-                            new VerticalListDataConverter().setJsonData(response).convert();
+                    final List<MultipleItemEntity> data = new VerticalListDataConverter().setJsonData(response).convert();
                     final SortDelegate delegate = getParentDelegate();
-                    final SortRecyclerAdapter adapter = new SortRecyclerAdapter(data,delegate);
+                    final SortRecyclerAdapter adapter = new SortRecyclerAdapter(data, delegate);
                     mRecyclerView.setAdapter(adapter);
                 })
                 .build()

@@ -107,5 +107,4 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
         DELEGATE.onBackPressed();
     }
 
-
 }

@@ -38,6 +38,12 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice = mTotalPrice + total;
+        }
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
 
@@ -49,6 +55,9 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         this.mCartItemListener = listener;
     }
 
+    public double getTotalPrice() {
+        return mTotalPrice;
+    }
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
@@ -62,7 +71,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 final String desc = entity.getField(ShopCartItemFields.DESC);
                 final int count = entity.getField(ShopCartItemFields.COUNT);
                 final double price = entity.getField(ShopCartItemFields.PRICE);
-
                 final AppCompatImageView imgThumb = holder.getView(R.id.image_item_shop_cart);
                 final AppCompatTextView tvTitle = holder.getView(R.id.tv_item_shop_cart_title);
                 final AppCompatTextView tvDesc = holder.getView(R.id.tv_item_shop_cart_desc);
@@ -71,7 +79,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 final IconTextView iconPlus = holder.getView(R.id.icon_item_plus);
                 final AppCompatTextView tvCount = holder.getView(R.id.tv_item_shop_cart_count);
                 final IconTextView iconIsSelected = holder.getView(R.id.icon_item_shop_cart);
-
                 tvTitle.setText(title);
                 tvDesc.setText(desc);
                 tvPrice.setText(String.valueOf(price));
@@ -126,7 +133,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     }
                 });
 
-
                 iconPlus.setOnClickListener(v -> {
                     final int currentCount = entity.getField(ShopCartItemFields.COUNT);
                     RestClient.builder()
@@ -147,8 +153,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                             .post();
                 });
 
-                break;
-            case 2:
                 break;
             default:
                 break;

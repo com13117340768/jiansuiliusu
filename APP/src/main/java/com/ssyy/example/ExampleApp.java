@@ -5,6 +5,7 @@ import android.app.Application;
 import com.ayunyi.mssyy.rw.icon.FontECModule;
 import com.ayunyi.mssyy.rw.icon.FontRWModule;
 import com.ft.example.R;
+import com.hss01248.dialog.StyledDialog;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.yy.core.app.Latte;
 import com.yy.core.net.interceptors.DebugInterceptor;
@@ -22,6 +23,6 @@ public class ExampleApp extends Application{
                 .withLoaderDelayed(500)
                 .withInterceptor(new DebugInterceptor("test", R.raw.fengtao))
                 .configure();
-
+        StyledDialog.init(this);
     }
 }

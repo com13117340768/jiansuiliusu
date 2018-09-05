@@ -3,6 +3,7 @@ package com.yy.core.app;
 import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.ArrayMap;
 
 import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -20,7 +21,7 @@ import okhttp3.Interceptor;
 
 public final class Configurator {
 
-    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final ArrayMap<Object, Object> LATTE_CONFIGS = new ArrayMap<>();
     private static final Handler HANDLER = new Handler();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
@@ -34,7 +35,7 @@ public final class Configurator {
         return Holder.INSTANCE;
     }
 
-    final HashMap<Object, Object> getLatteConfigs() {
+    final ArrayMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -95,9 +96,9 @@ public final class Configurator {
         return this;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public final Configurator withActivity(Activity activity) {
         LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
-
         return this;
     }
 

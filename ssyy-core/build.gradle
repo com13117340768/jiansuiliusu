@@ -22,6 +22,7 @@ android {
 
     repositories {
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 
     //这个是偷懒的写法，强制所有的第三方包都是用指定的support包版本
@@ -111,4 +112,13 @@ dependencies {
 
     implementation "com.google.auto.value:auto-value-annotations:1.6"
     annotationProcessor "com.google.auto.value:auto-value:1.6"
+
+    //alertDialog
+    api ('com.github.hss01248:DialogUtil:2.0.2'){
+        exclude group: 'com.android.support'
+    }
+
+
+
+
 }

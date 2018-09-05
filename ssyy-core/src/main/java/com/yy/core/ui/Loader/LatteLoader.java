@@ -25,11 +25,12 @@ public class LatteLoader {
         showLoading(context, type.name());
     }
 
-    private static void showLoading(Context context,String type){
-    final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
-        final AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.create(context,type);
+    @SuppressWarnings("WeakerAccess")
+    public static void showLoading(Context context, String type) {
+        final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
+        final AVLoadingIndicatorView avLoadingIndicatorView = new AVLoadingIndicatorView(context);
+        avLoadingIndicatorView.setIndicator(type);
         dialog.setContentView(avLoadingIndicatorView);
-
         int deviceWidth = DimenUtil.getScreenWidth();
         int deviceHeight = DimenUtil.getScreenHeight();
         Window dialogWindow = dialog.getWindow();
@@ -43,8 +44,8 @@ public class LatteLoader {
         LOADERS.add(dialog);
         dialog.show();
     }
-    @SuppressWarnings("unused")
-    public static void showLoading(Context context){
+
+    public static void showLoading(Context context) {
         showLoading(context, DEFAULT_LOADER);
     }
 

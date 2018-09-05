@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
+import com.hss01248.dialog.ActivityStackManager;
 import com.yy.core.activities.ProxyActivity;
 
 import butterknife.ButterKnife;
@@ -102,6 +103,7 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         DELEGATE.onActivityCreated(savedInstanceState);
+        ActivityStackManager.getInstance().addActivity(_mActivity);
     }
 
     @Override
@@ -128,6 +130,7 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
             unbinder.unbind();
         }
         DELEGATE.onDestroyView();
+        ActivityStackManager.getInstance().removeActivity(_mActivity);
         super.onDestroyView();
     }
 
@@ -226,4 +229,6 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
     public void start(final ISupportFragment toFragment, @LaunchMode int launchMode) {
         DELEGATE.start(toFragment, launchMode);
     }
+
+
 }
