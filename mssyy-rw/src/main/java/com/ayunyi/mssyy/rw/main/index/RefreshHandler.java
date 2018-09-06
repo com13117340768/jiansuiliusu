@@ -1,4 +1,4 @@
-package com.yy.core.ui.refresh;
+package com.ayunyi.mssyy.rw.main.index;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,12 +9,18 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yy.core.app.Latte;
+import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.bottom.BaseBottomDelegate;
 import com.yy.core.net.RestClient;
+import com.yy.core.net.callback.IError;
+import com.yy.core.net.callback.IFailure;
 import com.yy.core.net.callback.ISuccess;
 import com.yy.core.ui.recycler.DataConverter;
 import com.yy.core.ui.recycler.MultipleRecyclerAdapter;
 
 import java.io.UnsupportedEncodingException;
+
+import me.yokeyword.fragmentation.SupportFragmentDelegate;
 
 /**
  * Created by ft on 2018/8/14.
@@ -28,34 +34,42 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     private RecyclerView mRecyclerView = null;
     private MultipleRecyclerAdapter mRecyclerAdapter = null;
     private DataConverter mConverter = null;
+    private LatteFragment IndexDelegate = null;
+    SupportFragmentDelegate mSupportFragmentDelegate;
+
 
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                            RecyclerView recyclerView,
                            DataConverter dataConverter,
-                           PagingBean pagingBean) {
+                           PagingBean pagingBean,
+                           LatteFragment indexDelegate,
+                           SupportFragmentDelegate supportFragmentDelegate) {
         this.mSwipeRefreshLayout = swipeRefreshLayout;
         this.mConverter = dataConverter;
         this.mPagingBean = pagingBean;
         this.mRecyclerView = recyclerView;
+        this.IndexDelegate = indexDelegate;
+        this.mSupportFragmentDelegate = supportFragmentDelegate;
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
 
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView,
-                                        DataConverter dataConverter) {
-        return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean());
+                                        DataConverter dataConverter,
+                                        LatteFragment indexDelegate,
+                                        SupportFragmentDelegate supportFragmentDelegate) {
+        return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean(), indexDelegate,supportFragmentDelegate);
     }
 
 
     @Override
     public void onRefresh() {
-       //     refresh();
+        //     refresh();
     }
 
 
     private void refresh() {
-        //noinspection Convert2Lambda
         Latte.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -64,6 +78,10 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
         }, 2000);
     }
 
+//    public void firstPage(Context context, String url) {
+//        firstPage(context, url, null);
+//    }
+
     public void firstPage(Context context, String url) {
         RestClient.builder()
                 .url(url)
@@ -71,7 +89,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        //         Log.d("hahaha", ""+response);
                         String info = null;
                         try {
                             info = new String(response.getBytes(), "utf-8");
@@ -85,6 +102,22 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                         mRecyclerAdapter.setOnLoadMoreListener(RefreshHandler.this, mRecyclerView);
                         mRecyclerView.setAdapter(mRecyclerAdapter);
                         mPagingBean.addIndex();
+
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Log.d("hahaha", "" + code);
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Log.d("hahaha", "失败");
+                        RetryDelegate retryDelegate = new RetryDelegate();
+                        IndexDelegate.start(retryDelegate);
+                     //  mSupportFragmentDelegate.showHideFragment(retryDelegate,IndexDelegate);
                     }
                 })
                 .build()

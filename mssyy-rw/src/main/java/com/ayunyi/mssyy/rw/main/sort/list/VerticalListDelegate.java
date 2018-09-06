@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
@@ -12,6 +13,8 @@ import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.main.sort.SortDelegate;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.net.RestClient;
+import com.yy.core.net.callback.IError;
+import com.yy.core.net.callback.IFailure;
 import com.yy.core.ui.recycler.MultipleItemEntity;
 
 import java.util.List;
@@ -55,6 +58,10 @@ public class VerticalListDelegate extends LatteFragment {
                     final SortDelegate delegate = getParentDelegate();
                     final SortRecyclerAdapter adapter = new SortRecyclerAdapter(data, delegate);
                     mRecyclerView.setAdapter(adapter);
+                })
+                .failure(() -> {
+                })
+                .error((code, msg) -> {
                 })
                 .build()
                 .get();

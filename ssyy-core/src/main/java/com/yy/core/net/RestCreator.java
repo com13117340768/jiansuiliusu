@@ -15,7 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RestCreator {
 
     private static final class OKHttpHolder {
-        private static final int TIME_OUT = 60;
+        private static final int TIME_OUT = 4;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         private static final ArrayList<Interceptor> INTERCEPTORS = Latte.getConfiguration(ConfigKeys.INTERCEPTOR);
 

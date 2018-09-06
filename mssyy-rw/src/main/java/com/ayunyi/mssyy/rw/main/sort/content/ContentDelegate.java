@@ -12,6 +12,8 @@ import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.net.RestClient;
+import com.yy.core.net.callback.IError;
+import com.yy.core.net.callback.IFailure;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class ContentDelegate extends LatteFragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-        mContentId = bundle.getInt(ARG_CONTENT_ID);
+            mContentId = bundle.getInt(ARG_CONTENT_ID);
         }
     }
 
@@ -68,6 +70,10 @@ public class ContentDelegate extends LatteFragment {
                     final SectionAdapter sectionAdapter = new SectionAdapter(R.layout.item_section_content,
                             R.layout.item_section_header, mData);
                     mRecyclerView.setAdapter(sectionAdapter);
+                })
+                .failure(() -> {
+                })
+                .error((code, msg) -> {
                 })
                 .build()
                 .get();

@@ -31,7 +31,7 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
-    private int mClickedColor = Color.RED;//点击颜色
+    private int mClickedColor = Color.RED;
 
     @BindView(R2.id.bottom_bar)
     LinearLayoutCompat mBottomBar = null;
@@ -63,7 +63,7 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
             final BottomTabBean key = item.getKey();
             final BottomItemDelegate value = item.getValue();
             Log.d("HaHaHa", "BaseBottomDelegate->onCreate" +
-                    key.getTitle()+",value="+value);
+                    key.getTitle() + ",value=" + value);
             TAB_BEANS.add(key);
             ITEM_DELEGATES.add(value);
         }
@@ -76,13 +76,11 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
         for (int i = 0; i < size; i++) {
             LayoutInflater.from(getContext()).inflate(R.layout.botton_item_icon_text_layout, mBottomBar);
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
-            //设置每个item的点击事件
             item.setTag(i);
             item.setOnClickListener(this);
             final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
             final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
             final BottomTabBean bean = TAB_BEANS.get(i);
-            //初始化数据
             itemIcon.setText(bean.getIcon());
             itemTitle.setText(bean.getTitle());
             if (i == mIndexDelegate) {
@@ -93,7 +91,6 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
 
         final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
 
-        //第三个参数为可变数组
         getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
@@ -111,7 +108,6 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
     @Override
     public void onClick(View v) {
         final int tag = (int) v.getTag();
-        Log.d("hahaha", "onClick->tag=" + tag);
         resetColor();
         final RelativeLayout item = (RelativeLayout) v;
         final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
@@ -119,9 +115,6 @@ public abstract class BaseBottomDelegate extends LatteFragment implements View.O
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
-        //注意先后顺序
-        Log.d("HaHaHa", "onClick->mCurrentDelegate=new" + mCurrentDelegate);
         mCurrentDelegate = tag;
-        Log.d("HaHaHA", "onClick->mCurrentDelegate=old" + mCurrentDelegate);
     }
 }

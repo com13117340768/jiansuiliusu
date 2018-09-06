@@ -1,4 +1,4 @@
-package com.yy.core.ui.refresh;
+package com.ayunyi.mssyy.rw.main.index;
 
 /**
  * Created by ft on 2018/8/15.

@@ -117,8 +117,4 @@ dependencies {
     api ('com.github.hss01248:DialogUtil:2.0.2'){
         exclude group: 'com.android.support'
     }
-
-
-
-
 }

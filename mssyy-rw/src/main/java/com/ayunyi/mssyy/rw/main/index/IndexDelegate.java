@@ -10,25 +10,28 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.main.EcBottomDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.yy.core.fragments.LatteFragment;
 import com.yy.core.fragments.bottom.BottomItemDelegate;
 import com.yy.core.ui.recycler.BaseDecoration;
-import com.yy.core.ui.refresh.RefreshHandler;
 
 import java.util.Objects;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.SupportFragmentDelegate;
 
 
 /**
  * Created by ft on 2018/8/13.
  */
 public class IndexDelegate extends BottomItemDelegate {
+
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -40,7 +43,9 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView mIconScan = null;
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
+
     private RefreshHandler mRefreshHandler = null;
+
 
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
@@ -55,19 +60,13 @@ public class IndexDelegate extends BottomItemDelegate {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.app_background), 3));
-        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        final LatteFragment ecBottomDelegate = getParentDelegate();
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
     }
 
     @Override
@@ -78,11 +77,17 @@ public class IndexDelegate extends BottomItemDelegate {
         initRefreshLayout();
         Context context = getContext();
         mRefreshHandler.firstPage(context, "baidu_image.php");
+        Log.d("fengtao", "2");
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        Log.d("fengtao", "1");
+        LatteFragment latteFragment = getParentDelegate();
+        SupportFragmentDelegate supportFragmentDelegate = getSupportDelegate();
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView,
+                new IndexDataConverter(), latteFragment, supportFragmentDelegate);
+
     }
 
 }

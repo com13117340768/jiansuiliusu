@@ -41,8 +41,8 @@ public final class RequestCallbacks implements Callback<String> {
             }
         } else {
             if (ERROR != null) {
-                ERROR.onError(response.code(), response.message());
                 onRequestFinish();
+                ERROR.onError(response.code(), response.message());
             }
         }
 

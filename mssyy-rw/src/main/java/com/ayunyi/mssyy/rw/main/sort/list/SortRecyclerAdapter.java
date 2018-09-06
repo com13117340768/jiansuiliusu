@@ -45,10 +45,8 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 itemView.setOnClickListener(v -> {
                     final int currentPosition = holder.getAdapterPosition();
                     if (mPrePosition != currentPosition) {
-                        //还原上一个
                         getData().get(mPrePosition).setField(MultipleFields.TAG, false);
                         notifyItemChanged(mPrePosition);
-                        //更新选中的item
                         entity.setField(MultipleFields.TAG, true);
                         notifyItemChanged(currentPosition);
                         mPrePosition = currentPosition;
