@@ -15,8 +15,9 @@ import java.util.ArrayList;
 public class ShopCartDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
-        final ArrayList<MultipleItemEntity> dataLists = new ArrayList<>();
+        final ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONArray("data");
+
         final int size = dataArray.size();
         for (int i = 0; i < size; i++) {
             final JSONObject data = dataArray.getJSONObject(i);
@@ -26,19 +27,20 @@ public class ShopCartDataConverter extends DataConverter {
             final int id = data.getInteger("id");
             final int count = data.getInteger("count");
             final double price = data.getDouble("price");
-            final MultipleItemEntity itemEntity = MultipleItemEntity.builder()
+
+            final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE, ShopCartItemType.SHOP_CART_ITEM)
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.IMAGE_URL, thumb)
                     .setField(ShopCartItemFields.TITLE, title)
-                    .setField(ShopCartItemFields.DESC, thumb)
+                    .setField(ShopCartItemFields.DESC, desc)
                     .setField(ShopCartItemFields.COUNT, count)
                     .setField(ShopCartItemFields.PRICE, price)
                     .setField(ShopCartItemFields.IS_SELECTED, false)
                     .setField(ShopCartItemFields.POSITION, i)
                     .build();
-            dataLists.add(itemEntity);
+            dataList.add(entity);
         }
-        return dataLists;
+        return dataList;
     }
 }

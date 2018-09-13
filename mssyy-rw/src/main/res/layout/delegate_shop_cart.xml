@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#1111"
     android:orientation="vertical">
 
@@ -12,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/app_main"
-        app:title="awdaaaa"
         android:gravity="center">
 
         <RelativeLayout
@@ -60,13 +58,13 @@
         android:id="@+id/rv_shop_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8" />
+        android:layout_weight="8.5" />
 
     <android.support.v7.widget.ViewStubCompat
         android:id="@+id/stub_no_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="7"
         android:background="@android:color/white"
         android:layout="@layout/stub_shop_cart_no_item"
         android:minHeight="50dp"
@@ -76,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="bottom"
-        android:layout_weight="1"
+        android:layout_weight="0.9"
         android:minHeight="40dp"
         android:orientation="horizontal">
 
@@ -92,6 +90,7 @@
                 android:id="@+id/icon_shop_cart_select_all"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="{fa-check-circle}"
@@ -102,7 +101,7 @@
                 android:id="@+id/tv_total_select"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1.2"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:text="全选"
@@ -119,9 +118,16 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.5">
+            </android.support.v7.widget.AppCompatTextView>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="合计"
+                android:text="合计:"
                 android:textColor="@android:color/darker_gray"
                 tools:ignore="HardcodedText" />
 
@@ -145,9 +151,9 @@
             android:layout_weight="1"
             android:background="@color/app_main"
             android:gravity="center"
-            android:text="结算"
+            android:text="提交订单"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             tools:ignore="HardcodedText" />
 
     </android.support.v7.widget.LinearLayoutCompat>

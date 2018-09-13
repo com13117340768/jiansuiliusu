@@ -48,4 +48,8 @@ public abstract class BottomItemDelegate extends LatteFragment implements View.O
         }
         return false;
     }
+
+    public BottomItemDelegate getSupoFragment(){
+        return this;
+    }
 }

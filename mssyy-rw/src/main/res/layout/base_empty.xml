@@ -1,14 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id_loading_and_retry"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_ste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/app_main"
+        android:textSize="15sp"
+        android:text="您的购物车是空的~" />
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_goShopping"
+        android:layout_below="@id/tv_ste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:textColor="@color/we_chat_black"
-        android:textSize="20sp"
-        android:text="no data !" />
-
-</FrameLayout>
+        android:textColor="@color/app_main"
+        android:textSize="25sp"
+        android:text="快去添加商品吧~" />
+</RelativeLayout>

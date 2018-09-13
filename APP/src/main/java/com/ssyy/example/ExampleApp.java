@@ -15,7 +15,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                //    .withApiHost("http://mock.fulingjie.com/mock/api/")
+             //       .withApiHost("http://mock.fulingjie.com/mock/api/")
                 .withApiHost("http://192.168.2.103:8080/RestServer/api/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontECModule())

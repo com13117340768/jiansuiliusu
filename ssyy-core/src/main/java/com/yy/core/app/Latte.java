@@ -28,7 +28,5 @@ public final class Latte {
         return getConfiguration(ConfigKeys.HANDLER);
     }
 
-    public static void test(){
-    }
 
 }

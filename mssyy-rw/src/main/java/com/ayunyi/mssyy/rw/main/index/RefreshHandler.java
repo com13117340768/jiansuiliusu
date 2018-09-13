@@ -9,8 +9,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yy.core.app.Latte;
-import com.yy.core.fragments.LatteFragment;
-import com.yy.core.fragments.bottom.BaseBottomDelegate;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.IError;
 import com.yy.core.net.callback.IFailure;
@@ -19,8 +17,6 @@ import com.yy.core.ui.recycler.DataConverter;
 import com.yy.core.ui.recycler.MultipleRecyclerAdapter;
 
 import java.io.UnsupportedEncodingException;
-
-import me.yokeyword.fragmentation.SupportFragmentDelegate;
 
 /**
  * Created by ft on 2018/8/14.
@@ -34,22 +30,20 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     private RecyclerView mRecyclerView = null;
     private MultipleRecyclerAdapter mRecyclerAdapter = null;
     private DataConverter mConverter = null;
-    private LatteFragment IndexDelegate = null;
-    SupportFragmentDelegate mSupportFragmentDelegate;
+    private IndexDelegate IndexDelegate = null;
 
 
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                            RecyclerView recyclerView,
                            DataConverter dataConverter,
                            PagingBean pagingBean,
-                           LatteFragment indexDelegate,
-                           SupportFragmentDelegate supportFragmentDelegate) {
+                           IndexDelegate indexDelegate
+    ) {
         this.mSwipeRefreshLayout = swipeRefreshLayout;
         this.mConverter = dataConverter;
         this.mPagingBean = pagingBean;
         this.mRecyclerView = recyclerView;
         this.IndexDelegate = indexDelegate;
-        this.mSupportFragmentDelegate = supportFragmentDelegate;
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -57,9 +51,9 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView,
                                         DataConverter dataConverter,
-                                        LatteFragment indexDelegate,
-                                        SupportFragmentDelegate supportFragmentDelegate) {
-        return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean(), indexDelegate,supportFragmentDelegate);
+                                        IndexDelegate indexDelegate
+    ) {
+        return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean(), indexDelegate);
     }
 
 
@@ -89,6 +83,9 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+
+                        Log.d("hahaha", response);
+
                         String info = null;
                         try {
                             info = new String(response.getBytes(), "utf-8");
@@ -115,9 +112,9 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                     @Override
                     public void onFailure() {
                         Log.d("hahaha", "失败");
-                        RetryDelegate retryDelegate = new RetryDelegate();
-                        IndexDelegate.start(retryDelegate);
-                     //  mSupportFragmentDelegate.showHideFragment(retryDelegate,IndexDelegate);
+//                        RetryDelegate retryDelegate = new RetryDelegate();
+//                        retryDelegate.setChangeInterface(IndexDelegate);
+//                        IndexDelegate.start(retryDelegate);
                     }
                 })
                 .build()

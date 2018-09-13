@@ -10,12 +10,10 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.EcBottomDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.fragments.bottom.BottomItemDelegate;
@@ -24,13 +22,12 @@ import com.yy.core.ui.recycler.BaseDecoration;
 import java.util.Objects;
 
 import butterknife.BindView;
-import me.yokeyword.fragmentation.SupportFragmentDelegate;
 
 
 /**
  * Created by ft on 2018/8/13.
  */
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements RefreshListen {
 
 
     @BindView(R2.id.rv_index)
@@ -43,7 +40,6 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView mIconScan = null;
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
-
     private RefreshHandler mRefreshHandler = null;
 
 
@@ -75,19 +71,22 @@ public class IndexDelegate extends BottomItemDelegate {
         mToolbar.getBackground().setAlpha(0);//设置toolbar的背景透明度初始为0
         initRecyclerView();
         initRefreshLayout();
-        Context context = getContext();
-        mRefreshHandler.firstPage(context, "baidu_image.php");
-        Log.d("fengtao", "2");
+        loadIndex(getContext());
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        Log.d("fengtao", "1");
-        LatteFragment latteFragment = getParentDelegate();
-        SupportFragmentDelegate supportFragmentDelegate = getSupportDelegate();
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView,
-                new IndexDataConverter(), latteFragment, supportFragmentDelegate);
-
+                new IndexDataConverter(), this);
     }
 
+    public void loadIndex(Context context) {
+        mRefreshHandler.firstPage(context, "baidu_image.php");
+    }
+
+
+    @Override
+    public void refresh(Bundle bundle) {
+        loadIndex(getContext());
+    }
 }

@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--头像部分-->
         <RelativeLayout
             android:id="@+id/rl_harder_bg"
             android:layout_width="match_parent"
@@ -26,6 +25,7 @@
                 android:src="@drawable/cat" />
 
             <TextView
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -107,7 +107,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="待付款"
+                    android:text="我的钱包"
                     android:textSize="10sp" />
 
             </LinearLayout>

@@ -56,7 +56,6 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     }
 
-
     @Override
     protected MultipleViewHolder createBaseViewHolder(View view) {
         return MultipleViewHolder.create(view);

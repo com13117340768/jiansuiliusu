@@ -2,15 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="match_parent"
     android:layout_weight="8">
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tv_stub_to_buy"
+    android:id="@+id/tv_stub_to_buy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="您的购物车是空的~"
+    android:textColor="@color/app_main"
+    android:textSize="20sp"
+    tools:ignore="HardcodedText" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_below="@id/tv_stub_to_buy"
+        android:id="@+id/tv_stub_to_buy1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="去购物"
+        android:text="快去购物吧~"
         android:textColor="@color/app_main"
         android:textSize="20sp"
         tools:ignore="HardcodedText" />
