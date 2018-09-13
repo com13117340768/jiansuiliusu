@@ -5,4 +5,5 @@
     <string name="icon_scan">{icon-scan}</string>
     <string name="ss">搜索</string>
     <string name="fa_bullhorn">{fa-bullhorn}</string>
+    <string name="orderList">订单列表</string>
 </resources>

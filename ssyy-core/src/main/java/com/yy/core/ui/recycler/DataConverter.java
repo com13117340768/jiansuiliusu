@@ -18,7 +18,7 @@ public abstract class DataConverter {
     }
 
     protected String getJsonData() {
-        if(mDataJson == null || mDataJson.isEmpty()) {
+        if (mDataJson == null || mDataJson.isEmpty()) {
             throw new NullPointerException("DataJson is null.");
         }
         return mDataJson;
@@ -27,6 +27,4 @@ public abstract class DataConverter {
     public void clearData() {
         multipleItemEntities.clear();
     }
-
-
 }
