@@ -12,9 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.ayunyi.mssyy.rw.R;
-import com.ayunyi.mssyy.rw.main.cart.ShopCartDelegate;
+import com.ayunyi.mssyy.rw.main.cart.ShopCartFragment;
 import com.yy.core.app.Latte;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.net.RestClient;
@@ -41,7 +40,7 @@ public class MPay implements View.OnClickListener {
         return new MPay(delegate);
     }
 
-    public void beginPayDialog(ShopCartDelegate shopCartDelegate) {
+    public void beginPayDialog(ShopCartFragment shopCartDelegate) {
         mDialog.show();
         final Window window = mDialog.getWindow();
         if (window != null) {

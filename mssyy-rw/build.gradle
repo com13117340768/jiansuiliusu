@@ -10,6 +10,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+
+    repositories {
+        jcenter()
+        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -41,7 +48,6 @@ dependencies {
 
     implementation 'com.android.support:design:27.1.1'
 
-    //implementation files('libs/alipaySdk-20170725.jar')
 
 
 }

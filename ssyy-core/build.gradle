@@ -79,10 +79,14 @@ dependencies {
     })
 
     //权限
-    implementation('com.github.hotchemi:permissionsdispatcher:3.2.0') {
+
+
+
+    api('com.github.hotchemi:permissionsdispatcher:3.2.0') {
         exclude module: 'support-v13'
     }
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.2.0'
+
     //剪裁
     implementation 'com.github.yalantis:ucrop:2.2.2-native'
     //二维码

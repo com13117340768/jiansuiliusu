@@ -2,7 +2,7 @@ package com.ayunyi.mssyy.rw.main.index;
 
 import android.view.View;
 
-import com.ayunyi.mssyy.rw.detail.GoodsDetailDelegate;
+import com.ayunyi.mssyy.rw.detail.GoodsDetailFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.yy.core.fragments.LatteFragment;
@@ -24,7 +24,7 @@ public class IndexItemClickListener extends SimpleClickListener{
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        GoodsDetailFragment delegate = GoodsDetailFragment.create();
         mLatteFragment.start(delegate);
     }
 

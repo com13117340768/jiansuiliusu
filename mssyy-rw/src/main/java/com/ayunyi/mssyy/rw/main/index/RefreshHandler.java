@@ -30,14 +30,14 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     private RecyclerView mRecyclerView = null;
     private MultipleRecyclerAdapter mRecyclerAdapter = null;
     private DataConverter mConverter = null;
-    private IndexDelegate IndexDelegate = null;
+    private IndexFragment IndexDelegate = null;
 
 
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                            RecyclerView recyclerView,
                            DataConverter dataConverter,
                            PagingBean pagingBean,
-                           IndexDelegate indexDelegate
+                           IndexFragment indexDelegate
     ) {
         this.mSwipeRefreshLayout = swipeRefreshLayout;
         this.mConverter = dataConverter;
@@ -51,7 +51,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView,
                                         DataConverter dataConverter,
-                                        IndexDelegate indexDelegate
+                                        IndexFragment indexDelegate
     ) {
         return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean(), indexDelegate);
     }

@@ -6,8 +6,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
-import com.ayunyi.mssyy.rw.main.sort.SortDelegate;
-import com.ayunyi.mssyy.rw.main.sort.content.ContentDelegate;
+import com.ayunyi.mssyy.rw.main.sort.SortFragment;
+import com.ayunyi.mssyy.rw.main.sort.content.ContentFragment;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.ui.recycler.ItemType;
 import com.yy.core.ui.recycler.MultipleFields;
@@ -23,10 +23,10 @@ import me.yokeyword.fragmentation.SupportHelper;
  * Created by ft on 2018/8/19.
  */
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
-    private final SortDelegate mSortDelegate;
+    private final SortFragment mSortDelegate;
     private int mPrePosition = 0;
 
-    SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate sortDelegate) {
+    SortRecyclerAdapter(List<MultipleItemEntity> data, SortFragment sortDelegate) {
         super(data);
         this.mSortDelegate = sortDelegate;
         addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_vertical_menu_list);
@@ -72,14 +72,14 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void showContent(int contentId) {
-        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        final ContentFragment delegate = ContentFragment.newInstance(contentId);
         switchContent(delegate);
     }
 
 
-    private void switchContent(ContentDelegate delegate) {
+    private void switchContent(ContentFragment delegate) {
         final LatteFragment contentDelegate =
-                SupportHelper.findFragment(mSortDelegate.getChildFragmentManager(), ContentDelegate.class);
+                SupportHelper.findFragment(mSortDelegate.getChildFragmentManager(), ContentFragment.class);
         if (contentDelegate != null) {
             contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
         }

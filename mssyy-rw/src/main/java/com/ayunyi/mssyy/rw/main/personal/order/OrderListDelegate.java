@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.personal.PersonalDelegate;
+import com.ayunyi.mssyy.rw.main.personal.PersonalFragment;
 import com.yy.core.fragments.LatteFragment;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.ISuccess;
@@ -19,6 +19,7 @@ import com.yy.core.ui.recycler.MultipleItemEntity;
 import java.util.List;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by ft on 2018/9/14.
@@ -43,17 +44,19 @@ public class OrderListDelegate extends LatteFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Bundle args = getArguments();
-        mType = args.getString(PersonalDelegate.ORDER_TYPE);
+        if (args != null)
+            mType = args.getString(PersonalFragment.ORDER_TYPE);
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        toolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
+
         RestClient.builder()
                 .loader(getContext())
                 .url("order_list.php")
@@ -73,4 +76,10 @@ public class OrderListDelegate extends LatteFragment {
                 .build()
                 .get();
     }
+
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        return new FragmentAnimator();
+    }
+
 }
