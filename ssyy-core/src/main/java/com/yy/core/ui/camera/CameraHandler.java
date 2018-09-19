@@ -32,7 +32,7 @@ public class CameraHandler implements View.OnClickListener {
     private final AlertDialog DIALOG;
     private final PermissionFragment DELEGATE;
 
-    public CameraHandler(PermissionFragment delegate) {
+    CameraHandler(PermissionFragment delegate) {
         this.DELEGATE = delegate;
         DIALOG = new AlertDialog.Builder(Objects.requireNonNull(delegate.getContext())).create();
     }

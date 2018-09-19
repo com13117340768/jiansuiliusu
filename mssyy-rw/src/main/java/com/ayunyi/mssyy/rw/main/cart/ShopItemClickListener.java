@@ -7,15 +7,12 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Toast;
 
-import com.ayunyi.mssyy.rw.R;
-import com.ayunyi.mssyy.rw.main.index.IndexItemClickListener;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.hss01248.dialog.StyledDialog;
-import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
-import com.yy.core.app.Latte;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.app.RedWine;
+import com.yy.core.fragments.RedWineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +23,13 @@ import java.util.List;
 public class ShopItemClickListener extends SimpleClickListener {
 
 
-    private LatteFragment mLatteFragment;
+    private RedWineFragment mLatteFragment;
 
-    private ShopItemClickListener(LatteFragment latteFragment) {
+    private ShopItemClickListener(RedWineFragment latteFragment) {
         this.mLatteFragment = latteFragment;
     }
 
-    public static SimpleClickListener create(LatteFragment latteFragment) {
+    public static SimpleClickListener create(RedWineFragment latteFragment) {
         return new ShopItemClickListener(latteFragment);
     }
 
@@ -43,7 +40,7 @@ public class ShopItemClickListener extends SimpleClickListener {
 
     @Override
     public void onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-        Toast.makeText(Latte.getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RedWine.getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
 
         SpannableString spannableString = new SpannableString("删除");
         ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#ffcc0000"));
@@ -73,7 +70,7 @@ public class ShopItemClickListener extends SimpleClickListener {
     }
 
     private void showToast(String msg) {
-        Toast.makeText(Latte.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RedWine.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 

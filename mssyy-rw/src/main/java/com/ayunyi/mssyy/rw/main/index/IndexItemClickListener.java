@@ -5,20 +5,20 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.detail.GoodsDetailFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 
 /**
  * Created by ft on 2018/8/16.
  */
 public class IndexItemClickListener extends SimpleClickListener{
 
-    private LatteFragment mLatteFragment;
+    private RedWineFragment mLatteFragment;
 
-    private  IndexItemClickListener(LatteFragment latteFragment) {
+    private  IndexItemClickListener(RedWineFragment latteFragment) {
         this.mLatteFragment = latteFragment;
     }
 
-    public static SimpleClickListener create(LatteFragment latteFragment){
+    public static SimpleClickListener create(RedWineFragment latteFragment){
         return new IndexItemClickListener(latteFragment);
     }
 

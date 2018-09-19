@@ -4,14 +4,13 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.ISuccess;
 import com.yy.core.ui.recycler.MultipleFields;
@@ -95,7 +94,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 final boolean isSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
                 if (isSelected) {
                     iconIsSelected.setTextColor
-                            (ContextCompat.getColor(Latte.getApplicationContext(), R.color.app_main));
+                            (ContextCompat.getColor(RedWine.getApplicationContext(), R.color.app_main));
                 } else {
                     iconIsSelected.setTextColor(Color.GRAY);
                 }
@@ -106,7 +105,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         entity.setField(ShopCartItemFields.IS_SELECTED, false);
                     } else {
                         iconIsSelected.setTextColor
-                                (ContextCompat.getColor(Latte.getApplicationContext(), R.color.app_main));
+                                (ContextCompat.getColor(RedWine.getApplicationContext(), R.color.app_main));
                         entity.setField(ShopCartItemFields.IS_SELECTED, true);
                     }
                 });

@@ -26,8 +26,6 @@ import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
 public abstract class PermissionFragment extends BaseFragment {
-    //不是直接调用方法
-
 
     @NeedsPermission(Manifest.permission.CAMERA)
     void startCamera() {
@@ -43,13 +41,11 @@ public abstract class PermissionFragment extends BaseFragment {
         PermissionFragmentPermissionsDispatcher.startWriteWithPermissionCheck(this);
     }
 
-    //这个是真正调用的方法
     public void startCameraWithCheck() {
         PermissionFragmentPermissionsDispatcher.startCameraWithPermissionCheck(this);
 
     }
 
-    //扫描二维码(不直接调用)
     @NeedsPermission(Manifest.permission.CAMERA)
     void startScan(BaseFragment delegate) {
         //    delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCodes.SCAN);

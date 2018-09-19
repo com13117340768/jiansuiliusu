@@ -3,7 +3,7 @@ package com.ayunyi.mssyy.rw.main.personal.list;
 import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 
 /**
  * Created by ft on 2018/9/13.
@@ -14,10 +14,10 @@ public class ListBean implements MultiItemEntity {
     private String mText = null;
     private String mValue = null;
     private int mId = 0;
-    private LatteFragment mDelegate = null;
+    private RedWineFragment mDelegate = null;
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
 
-    ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, LatteFragment mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
+    ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, RedWineFragment mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
         this.mItemType = mItemType;
         this.mImageUrl = mImageUrl;
         this.mText = mText;
@@ -49,7 +49,7 @@ public class ListBean implements MultiItemEntity {
         return mId;
     }
 
-    public LatteFragment getDelegate() {
+    public RedWineFragment getDelegate() {
         return mDelegate;
     }
 
@@ -70,7 +70,7 @@ public class ListBean implements MultiItemEntity {
         private String text = null;
         private String value = null;
         private CompoundButton.OnCheckedChangeListener onCheckedChangeListener = null;
-        private LatteFragment delegate = null;
+        private RedWineFragment delegate = null;
 
         public Builder setId(int id) {
             this.id = id;
@@ -102,7 +102,7 @@ public class ListBean implements MultiItemEntity {
             return this;
         }
 
-        public Builder setDelegate(LatteFragment delegate) {
+        public Builder setDelegate(RedWineFragment delegate) {
             this.delegate = delegate;
             return this;
         }

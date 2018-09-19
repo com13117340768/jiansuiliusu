@@ -11,7 +11,7 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.main.personal.PersonalFragment;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.ISuccess;
 import com.yy.core.ui.recycler.MultipleItemEntity;
@@ -24,7 +24,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * Created by ft on 2018/9/14.
  */
-public class OrderListDelegate extends LatteFragment {
+public class OrderListDelegate extends RedWineFragment {
 
 
     @BindView(R2.id.tb_shop_cart)

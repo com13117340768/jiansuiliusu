@@ -9,7 +9,7 @@ import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.ui.date.DateDialogUtil;
 
 /**
@@ -39,7 +39,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                 DELEGATE.startCameraWithCheck();
                 break;
             case name:
-                LatteFragment latteFragment = bean.getDelegate();
+                RedWineFragment latteFragment = bean.getDelegate();
                 DELEGATE.getSupportDelegate().start(latteFragment);
                 break;
             case sex:
@@ -66,7 +66,6 @@ public class UserProfileClickListener extends SimpleClickListener {
                 break;
             default:
                 break;
-
 
         }
 

@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
 import com.yy.core.R;
-import com.yy.core.app.Latte;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.app.RedWine;
+import com.yy.core.fragments.RedWineFragment;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -19,7 +19,7 @@ import qiu.niorgai.StatusBarCompat;
 public abstract class ProxyActivity extends AppCompatActivity implements ISupportActivity {
     private final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);
 
-    public abstract LatteFragment setRootDelegate();
+    public abstract RedWineFragment setRootDelegate();
 
     public static final String TAG = ProxyActivity.class.getSimpleName();
 
@@ -29,7 +29,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Latte.getConfigurator().withActivity(this);//把activity对象放入全局
+        RedWine.getConfigurator().withActivity(this);//把activity对象放入全局
         DELEGATE.onCreate(savedInstanceState);
         initContainer(savedInstanceState);
         if (getSupportActionBar() != null) {
@@ -56,6 +56,9 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
         if (savedInstanceState == null) {
             DELEGATE.loadRootFragment(R.id.delegate_container, setRootDelegate());
         }
+    //    this.getWindow().getDecorView().setBackgroundColor(this.getResources().getColor(R.color.fina));
+
+
     }
 
     @Override

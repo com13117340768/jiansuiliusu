@@ -8,7 +8,7 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.main.sort.SortFragment;
 import com.ayunyi.mssyy.rw.main.sort.content.ContentFragment;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.ui.recycler.ItemType;
 import com.yy.core.ui.recycler.MultipleFields;
 import com.yy.core.ui.recycler.MultipleItemEntity;
@@ -78,7 +78,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
 
     private void switchContent(ContentFragment delegate) {
-        final LatteFragment contentDelegate =
+        final RedWineFragment contentDelegate =
                 SupportHelper.findFragment(mSortDelegate.getChildFragmentManager(), ContentFragment.class);
         if (contentDelegate != null) {
             contentDelegate.getSupportDelegate().replaceFragment(delegate, false);

@@ -1,7 +1,8 @@
 package com.yy.core.net;
 
 import com.yy.core.app.ConfigKeys;
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
+import com.yy.core.net.rx.RxRestService;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class RestCreator {
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 4;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
-        private static final ArrayList<Interceptor> INTERCEPTORS = Latte.getConfiguration(ConfigKeys.INTERCEPTOR);
+        private static final ArrayList<Interceptor> INTERCEPTORS = RedWine.getConfiguration(ConfigKeys.INTERCEPTOR);
 
         private static OkHttpClient.Builder addInterceptor() {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
@@ -34,7 +35,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = Latte.getConfiguration(ConfigKeys.API_HOST);
+        private static final String BASE_URL = RedWine.getConfiguration(ConfigKeys.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
@@ -52,13 +53,13 @@ public class RestCreator {
         return RestServiceHolder.REST_SERVICE;
     }
 
-    /*private static final class RxRestServiceHolder {
+    private static final class RxRestServiceHolder {
         private static final RxRestService REST_SERVICE =
                 RetrofitHolder.RETROFIT_CLIENT.create(RxRestService.class);
     }
 
     public static RxRestService getRxRestService() {
         return RxRestServiceHolder.REST_SERVICE;
-    }*/
+    }
 
 }

@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
 
 /**
  * Created by ft on 2018/8/16.
@@ -21,7 +21,7 @@ public class TranslucentBehavior  extends CoordinatorLayout.Behavior<Toolbar>{
     private static final int MORE = 100;
 
     private static final int MAX_ALPHA = 255;
-    private  Context context = Latte.getApplicationContext();
+    private  Context context = RedWine.getApplicationContext();
 
     public TranslucentBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);

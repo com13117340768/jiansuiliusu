@@ -5,7 +5,7 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.fragments.RedWineFragment;
 
 /**
  * Created by 傅令杰
@@ -13,9 +13,9 @@ import com.yy.core.fragments.LatteFragment;
 
 public class PersonalClickListener extends SimpleClickListener {
 
-    private final LatteFragment DELEGATE;
+    private final RedWineFragment DELEGATE;
 
-    public PersonalClickListener(LatteFragment delegate) {
+    public PersonalClickListener(RedWineFragment delegate) {
         this.DELEGATE = delegate;
     }
 

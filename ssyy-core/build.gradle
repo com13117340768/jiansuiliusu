@@ -79,9 +79,6 @@ dependencies {
     })
 
     //权限
-
-
-
     api('com.github.hotchemi:permissionsdispatcher:3.2.0') {
         exclude module: 'support-v13'
     }
@@ -93,13 +90,15 @@ dependencies {
     implementation('me.dm7.barcodescanner:zbar:1.9.8') {
         exclude group: 'com.android.support'
     }
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //RXJava
+    api 'io.reactivex.rxjava2:rxjava:2.1.16'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //ButterKnife
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    api 'com.android.support:recyclerview-v7:27.1.1'
 
+    api 'com.android.support:recyclerview-v7:27.1.1'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     api 'com.choices.divider:RecyclerView_Divider:1.0.0'
 

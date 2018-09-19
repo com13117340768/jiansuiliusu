@@ -8,7 +8,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.IError;
 import com.yy.core.net.callback.IFailure;
@@ -64,7 +64,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
 
 
     private void refresh() {
-        Latte.getHandler().postDelayed(new Runnable() {
+        RedWine.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -131,7 +131,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
         if (mRecyclerAdapter.getData().size() < pageSize || currentCount >= total) {
             mRecyclerAdapter.loadMoreEnd(true);
         } else {
-            Latte.getHandler().postDelayed(new Runnable() {
+            RedWine.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     RestClient.builder()

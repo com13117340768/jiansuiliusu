@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import com.yy.core.app.ConfigKeys;
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
 import com.yy.core.ui.Loader.LatteLoader;
 import com.yy.core.ui.Loader.LoaderStyle;
 
@@ -20,7 +20,7 @@ public final class RequestCallbacks implements Callback<String> {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final LoaderStyle LOADER_STYLE;
-    private static final Handler HANDLER = Latte.getHandler();
+    private static final Handler HANDLER = RedWine.getHandler();
 
     public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle style) {
         this.REQUEST = request;
@@ -62,7 +62,7 @@ public final class RequestCallbacks implements Callback<String> {
 
 
     private void onRequestFinish() {
-        final long delayed = Latte.getConfiguration(ConfigKeys.LOADER_DELAYED);
+        final long delayed = RedWine.getConfiguration(ConfigKeys.LOADER_DELAYED);
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override

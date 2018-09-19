@@ -6,8 +6,7 @@ import com.joanzapata.iconify.IconFontDescriptor;
 public class FontRWModule implements IconFontDescriptor {
     @Override
     public String ttfFileName() {
-        //noinspection SpellCheckingInspection
-        return "eciconfont.ttf";
+        return "mfont.ttf";
     }
 
     @Override

@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.main.cart.ShopCartFragment;
-import com.yy.core.app.Latte;
-import com.yy.core.fragments.LatteFragment;
+import com.yy.core.app.RedWine;
+import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.ISuccess;
 
@@ -31,12 +31,12 @@ public class MPay implements View.OnClickListener {
     private AlertDialog mDialog = null;
     private int mOrderID = -1;
 
-    private MPay(LatteFragment delegate) {
+    private MPay(RedWineFragment delegate) {
         this.mActivity = delegate.getProxyActivity();
         this.mDialog = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
-    public static MPay create(LatteFragment delegate) {
+    public static MPay create(RedWineFragment delegate) {
         return new MPay(delegate);
     }
 
@@ -134,15 +134,15 @@ public class MPay implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_dialog_pay_alpay) {
-            Toast.makeText(Latte.getApplicationContext(),"点击了支付宝支付！",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RedWine.getApplicationContext(),"点击了支付宝支付！",Toast.LENGTH_SHORT).show();
             alPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
-            Toast.makeText(Latte.getApplicationContext(),"点击了微信支付",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RedWine.getApplicationContext(),"点击了微信支付",Toast.LENGTH_SHORT).show();
             weChatPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
-            Toast.makeText(Latte.getApplicationContext(),"取消支付",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RedWine.getApplicationContext(),"取消支付",Toast.LENGTH_SHORT).show();
             mDialog.cancel();
         }
     }

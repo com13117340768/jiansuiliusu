@@ -49,9 +49,8 @@ dependencies {
     compileOnly project(':ssyy-annotations')
     annotationProcessor project(':ssyy-compiler')
     implementation project(':ssyy-core')
-
-
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation project(path: ':mssyy-rw')
+    implementation project(path: ':ssyy-ui')
 }

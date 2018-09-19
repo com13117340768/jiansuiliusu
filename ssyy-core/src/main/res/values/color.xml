@@ -2,4 +2,5 @@
 
     <resources>
         <color name="app_main_color">#ffcc0000</color>
+    <color name="fina">#00000000</color>
     </resources>

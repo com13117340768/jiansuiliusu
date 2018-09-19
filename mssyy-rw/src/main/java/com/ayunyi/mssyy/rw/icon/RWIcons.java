@@ -3,8 +3,7 @@ package com.ayunyi.mssyy.rw.icon;
 import com.joanzapata.iconify.Icon;
 
 public enum RWIcons implements Icon{
-    icon_share('\ue60a')
-    ;
+    icon_delete('\ue8b6'),icon_share('\ue60a'),icon_return('\ue618');
 
     private char aChar;
 

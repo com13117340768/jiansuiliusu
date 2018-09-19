@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.yy.core.app.Latte;
+import com.yy.core.app.RedWine;
 import com.yy.core.net.callback.IRequest;
 import com.yy.core.net.callback.ISuccess;
 import com.yy.core.util.file.FileUtil;
@@ -63,7 +63,7 @@ final class SaveFileTask extends AsyncTask<Object, Void, File> {
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);
             install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            Latte.getApplicationContext().startActivity(install);
+            RedWine.getApplicationContext().startActivity(install);
         }
     }
 }

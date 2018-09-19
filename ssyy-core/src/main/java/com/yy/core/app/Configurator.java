@@ -10,11 +10,8 @@ import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import com.yy.core.activities.ProxyActivity;
-import com.yy.core.fragments.LatteFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import okhttp3.Interceptor;
 
@@ -47,7 +44,7 @@ public final class Configurator {
         initIcons();
         Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
-        Utils.init(Latte.getApplicationContext());
+        Utils.init(RedWine.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {
