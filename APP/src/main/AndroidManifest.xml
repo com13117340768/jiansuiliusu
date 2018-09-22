@@ -22,7 +22,7 @@
                android:value="none"/>
         -->
         <activity
-            android:name="com.ssyy.example.MainActivity"
+            android:name="com.ssyy.example.RedWineActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme">
             <intent-filter>

@@ -14,6 +14,8 @@ import com.yy.core.R;
 import com.yy.core.ui.Banner.BannerCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,12 +65,19 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
-        final String text;
+        String text;
+        String newText = null;
         final String imageUrl;
         final ArrayList<String> bannerImages;
         switch (holder.getItemViewType()) {
             case ItemType.TEXT:
                 text = entity.getField(MultipleFields.TEXT);
+                try {
+                    newText = new String(text.getBytes("iso-8859-1"), "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
                 holder.setText(R.id.text_single, text);
                 break;
             case ItemType.IMAGE:
@@ -80,12 +89,17 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 break;
             case ItemType.IMAGE_TEXT:
                 text = entity.getField(MultipleFields.TEXT);
+                try {
+                    newText = new String(text.getBytes("UTF-8"), "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(RECYCLER_OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_multiple));
-                holder.setText(R.id.tv_multiple, text);
+                holder.setText(R.id.tv_multiple, newText);
                 break;
             case ItemType.BANNER:
                 if (!mIsInitBanner) {

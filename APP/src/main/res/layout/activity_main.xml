@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ssyy.example.MainActivity">
+    tools:context="com.ssyy.example.RedWineActivity">
 
     <com.joanzapata.iconify.widget.IconTextView
         android:id="@+id/icon_test"

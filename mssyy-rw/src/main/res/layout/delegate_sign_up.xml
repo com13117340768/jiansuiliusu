@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--suppress AndroidDomInspection -->
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -145,15 +146,39 @@
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_link_sign_in"
+
+            <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="已经注册了？请登录"
-                android:textSize="16sp"
-                tools:ignore="HardcodedText" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                >
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_link_sign_in"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="已经注册了？\n请登录"
+                    tools:ignore="HardcodedText" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_phone_sign_in"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="嫌麻烦？\n试试手机号注册"
+                    tools:ignore="HardcodedText" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+
+
 
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>

@@ -5,7 +5,7 @@ package com.ayunyi.mssyy.rw.login;
  */
 public interface ISignListener {
 
-    void onSignInSuccess();
+    void onSignInSuccess(FromWhereOnLoginTag onLoginTag);
 
     void onSignUpSuccess();
 }

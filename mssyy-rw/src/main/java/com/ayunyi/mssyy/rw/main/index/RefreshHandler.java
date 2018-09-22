@@ -31,7 +31,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     private MultipleRecyclerAdapter mRecyclerAdapter = null;
     private DataConverter mConverter = null;
     private IndexFragment IndexDelegate = null;
-
+    private Context mContext = null;
 
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                            RecyclerView recyclerView,
@@ -59,7 +59,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
 
     @Override
     public void onRefresh() {
-        //     refresh();
+             refresh();
     }
 
 
@@ -77,6 +77,8 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
 //    }
 
     public void firstPage(Context context, String url) {
+        mContext = context;
+
         RestClient.builder()
                 .url(url)
                 .loader(context)
@@ -112,9 +114,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                     @Override
                     public void onFailure() {
                         Log.d("hahaha", "失败");
-//                        RetryDelegate retryDelegate = new RetryDelegate();
-//                        retryDelegate.setChangeInterface(IndexDelegate);
-//                        IndexDelegate.start(retryDelegate);
                     }
                 })
                 .build()
@@ -158,6 +157,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
 
     @Override
     public void onLoadMoreRequested() {
-        paging("refresh.php?index=");
+    //    paging("refresh.php?index=");
+        firstPage(mContext, "baidu_image.php");
     }
 }

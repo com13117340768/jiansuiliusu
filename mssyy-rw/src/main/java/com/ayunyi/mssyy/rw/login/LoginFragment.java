@@ -1,15 +1,17 @@
 package com.ayunyi.mssyy.rw.login;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -27,11 +29,21 @@ import com.yy.core.net.callback.ISuccess;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by ft on 2018/9/18.
  */
-public class SignInFragment extends RedWineFragment {
+public class LoginFragment extends RedWineFragment implements TextWatcher {
+
+
+    @BindView(R2.id.exit_clean_user)
+    IconTextView ic_clean_user = null;
+
+
+    @BindView(R2.id.exit_clean_pass)
+    IconTextView ic_clean_pass = null;
 
     //退出登录界面
     @BindView(R2.id.icon_exit)
@@ -65,7 +77,7 @@ public class SignInFragment extends RedWineFragment {
 
     //微信登录
     @BindView(R2.id.icon_sign_in_wx)
-    IconTextView iconTextView_wechat_login = null;
+    IconTextView iconTextView_wx_login = null;
 
     //QQ登录
     @BindView(R2.id.icon_sign_in_qq)
@@ -80,13 +92,30 @@ public class SignInFragment extends RedWineFragment {
         AlertToast("退出的点击事件");
     }
 
+    @OnClick(R2.id.exit_clean_user)
+    void cleanEditText() {
+        editText_name.setText("");
+    }
+
+    @OnClick(R2.id.exit_clean_pass)
+    void cleanEditPass() {
+        editText_password.setText("");
+    }
+
+
     //客服按钮的点击事件
     @OnClick(R2.id.icon_sign_kef)
     void KfClick() {
-        AlertToast("客服按钮的点击事件");
+        Long phone = 17717056252L;
+        Intent Intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
+        startActivity(Intent);
     }
 
-    Handler handler = new Handler();
+
+    @OnClick(R2.id.tv_retrieve_password)
+    void RetrieveClick() {
+        getSupportDelegate().start(new RetrievePassFragment());
+    }
 
 
     //用户点击登录事件
@@ -102,16 +131,7 @@ public class SignInFragment extends RedWineFragment {
                         @Override
                         public void onSuccess(String response) {
                             Logger.json(response);
-                            AlertToast("登录成功！");
-                        //    SignHandler.onSignIn(signListener);
-
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    getSupportDelegate().start(new EcBottomFragment());
-                                }
-                            }) ;
-
+                            SignHandler.onSignIn(response,signListener);
                         }
                     })
                     .error(new IError() {
@@ -128,22 +148,19 @@ public class SignInFragment extends RedWineFragment {
                     })
                     .build()
                     .post();
-
-
         }
     }
 
     //短信的普通注册按钮
     @OnClick(R2.id.tv_msg_sign)
     void MsgRegClick() {
-        AlertToast("短信的普通注册按钮");
-
+        getSupportDelegate().start(new PhoneLoginFragment());
     }
 
     //普通注册-登录的点击事件
     @OnClick(R2.id.tv_sing_reg)
     void RegClick() {
-        getSupportDelegate().start(new SignUpFragment());
+        getSupportDelegate().start(new RegisterFragment());
     }
 
     //微信登录
@@ -158,7 +175,7 @@ public class SignInFragment extends RedWineFragment {
         AlertToast("QQ登录");
     }
 
-
+    @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -167,6 +184,7 @@ public class SignInFragment extends RedWineFragment {
         }
     }
 
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_sign_in;
@@ -174,6 +192,8 @@ public class SignInFragment extends RedWineFragment {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        editText_name.addTextChangedListener(this);
+        editText_password.addTextChangedListener(this);
     }
 
 
@@ -213,5 +233,34 @@ public class SignInFragment extends RedWineFragment {
         return isValid;
     }
 
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        return new DefaultHorizontalAnimator();
+    }
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (editText_name.getText().toString().trim().length() > 0) {
+            ic_clean_user.setVisibility(View.VISIBLE);
+        } else {
+            ic_clean_user.setVisibility(View.GONE);
+        }
+
+        if (editText_password.getText().toString().trim().length() > 0) {
+            ic_clean_pass.setVisibility(View.VISIBLE);
+        } else {
+            ic_clean_pass.setVisibility(View.GONE);
+        }
+
+    }
 }

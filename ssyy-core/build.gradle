@@ -118,5 +118,6 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
-
+    //GreenDao
+    api 'org.greenrobot:greendao:3.2.2'
 }
