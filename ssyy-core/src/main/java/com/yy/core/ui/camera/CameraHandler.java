@@ -29,12 +29,14 @@ import java.util.Objects;
 
 public class CameraHandler implements View.OnClickListener {
 
-    private final AlertDialog DIALOG;
+    private AlertDialog DIALOG = null;
     private final PermissionFragment DELEGATE;
 
     CameraHandler(PermissionFragment delegate) {
         this.DELEGATE = delegate;
-        DIALOG = new AlertDialog.Builder(Objects.requireNonNull(delegate.getContext())).create();
+        if (DIALOG == null) {
+            DIALOG = new AlertDialog.Builder(Objects.requireNonNull(delegate.getContext())).create();
+        }
     }
 
     final void beginCameraDialog() {

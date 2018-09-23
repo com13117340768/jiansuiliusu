@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.yy.core.R;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.util.logger.FengLogger;
 
 public abstract class BottomItemFragment extends RedWineFragment implements View.OnKeyListener {
     private long mExitTime = 0;
@@ -31,6 +32,12 @@ public abstract class BottomItemFragment extends RedWineFragment implements View
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+//        FengLogger.d("feng",v);
+//        FengLogger.d("feng",keyCode);
+//        FengLogger.d("feng",event);
+
+
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - mExitTime < EXIT_TIME) {
                 if (mExitTime != 0) {
@@ -51,5 +58,11 @@ public abstract class BottomItemFragment extends RedWineFragment implements View
 
     public BottomItemFragment getSupoFragment(){
         return this;
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+     //   Toast.makeText(getContext(), "触发了onBackPressedSupport"+super.onBackPressedSupport(), Toast.LENGTH_SHORT).show();
+        return super.onBackPressedSupport();
     }
 }

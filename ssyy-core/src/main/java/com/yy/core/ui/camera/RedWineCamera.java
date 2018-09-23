@@ -10,11 +10,10 @@ import com.yy.core.util.file.FileUtil;
  * 照相机调用类
  */
 
-public class LatteCamera {
+public class RedWineCamera {
 
     public static Uri createCropFile() {
-        return Uri.parse
-                (FileUtil.createFile("crop_image",
+        return Uri.parse(FileUtil.createFile("crop_image",
                         FileUtil.getFileNameByTime("IMG", "jpg")).getPath());
     }
 

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <!--suppress AndroidDomInspection -->
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_red_dark">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/icon_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="15dp"
+            android:gravity="start"
+            android:text="{icon-delete}"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/icon_sign_kef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:gravity="end"
+            android:text="客服"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="30dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:background="@android:color/holo_red_dark"
+                android:gravity="center"
+                android:text="LOGO"
+                android:textColor="@android:color/white"
+                android:textSize="30dp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--账号-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="18">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_sign_in_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:hint="用户名/邮箱/手机号"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:maxLength="18" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/exit_clean_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="20dp"
+                    android:text="{icon-delete}"
+                    android:visibility="gone"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@android:color/holo_red_dark"
+                    android:layout_marginTop="10dp"
+                    app:counterMaxLength="18"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_sign_in_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入密码"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLength="18"
+                        tools:ignore="HardcodedText" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/exit_clean_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="60dp"
+                    android:visibility="gone"
+                    android:text="{icon-delete}"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="25sp" />
+
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_retrieve_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="忘记密码？"
+                android:textColor="@android:color/black" />
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_sign"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="登录"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText" />
+
+            <!--<android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_link_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="还没有账户？现在注册吧"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />-->
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_msg_sign"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="手机号快捷登录"
+                    android:textColor="@android:color/black" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_sing_reg"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
+                    android:text="新用户注册"
+                    android:textColor="@android:color/black" />
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="@android:color/darker_gray" />
+                </android.support.v7.widget.LinearLayoutCompat>
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="其他方式登录" />
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="@android:color/darker_gray" />
+                </android.support.v7.widget.LinearLayoutCompat>
+
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.joanzapata.iconify.widget.IconTextView
+                        android:id="@+id/icon_sign_in_wx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="{fa-weixin}"
+                        android:textColor="#04b00f"
+                        android:textSize="28sp" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="微信登录"
+
+                        />
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.joanzapata.iconify.widget.IconTextView
+                        android:id="@+id/icon_sign_in_qq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="{fa-qq}"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:textSize="28sp" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="QQ登录" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v7.widget.LinearLayoutCompat>

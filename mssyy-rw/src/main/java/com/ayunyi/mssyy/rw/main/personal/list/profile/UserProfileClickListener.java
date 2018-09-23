@@ -2,15 +2,30 @@ package com.ayunyi.mssyy.rw.main.personal.list.profile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.orhanobut.logger.Logger;
+import com.yy.core.app.RedWine;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.net.RestClient;
+import com.yy.core.net.callback.ISuccess;
 import com.yy.core.ui.date.DateDialogUtil;
+import com.yy.core.util.callback.CallbackManager;
+import com.yy.core.util.callback.CallbackType;
+import com.yy.core.util.callback.IGlobalCallback;
+import com.yy.core.util.logger.FengLogger;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by ft on 2018/9/14.
@@ -37,6 +52,45 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case image:
                 DELEGATE.startCameraWithCheck();
+
+                //noinspection Convert2Lambda
+                CallbackManager.getInstance().addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                    @Override
+                    public void executeCallback(Uri uri) {
+                        FengLogger.d("ON_CROP",uri.getPath());
+                        CircleImageView circleImageView = view.findViewById(R.id.img_arrow_avatar);
+                        Glide.with(DELEGATE)
+                                .load(uri)
+                                .into(circleImageView);
+
+                        RestClient.builder()
+                                .url("baidu_image.php")
+                                .loader(DELEGATE.getContext())
+                                //    .file(uri.getPath())
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        Toast.makeText(DELEGATE.getContext(), "头像同步成功", Toast.LENGTH_SHORT).show();
+                                        //通知服务器更新信息
+                                        RestClient.builder()
+                                                .url("baidu_image.php")
+                                                .loader(DELEGATE.getContext())
+                                                .success(new ISuccess() {
+                                                    @Override
+                                                    public void onSuccess(String response) {
+                                                        //获取更新后的用户信息，然后更新本地数据库
+                                                        Toast.makeText(DELEGATE.getContext(), "头像已保存数据库", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .build()
+                                                .get();
+                                    }
+                                })
+                                .build()
+                                // .upload()
+                                .get();
+                    }
+                });
                 break;
             case name:
                 RedWineFragment latteFragment = bean.getDelegate();

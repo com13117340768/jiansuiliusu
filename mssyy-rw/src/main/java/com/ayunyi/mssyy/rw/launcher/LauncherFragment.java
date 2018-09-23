@@ -99,8 +99,9 @@ public class LauncherFragment extends RedWineFragment {
                     listener.OnLauncherFinish(OnLauncherFinishTag.NOT_LOGNED);
             }
         });
-
     }
-
-
+    @Override
+    public boolean onBackPressedSupport() {
+        return true;
+    }
 }

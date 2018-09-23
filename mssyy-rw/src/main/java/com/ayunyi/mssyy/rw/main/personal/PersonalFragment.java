@@ -5,17 +5,22 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
+import com.ayunyi.mssyy.rw.main.personal.address.AddersFragment;
 import com.ayunyi.mssyy.rw.main.personal.list.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.list.ListItemType;
 import com.ayunyi.mssyy.rw.main.personal.order.OrderListDelegate;
 import com.ayunyi.mssyy.rw.main.personal.list.profile.UserProFileFragment;
+import com.ayunyi.mssyy.rw.main.personal.setup.SystemSetupFragment;
 import com.yy.core.fragments.bottom.BottomItemFragment;
+import com.yy.core.util.logger.FengLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,9 @@ import butterknife.OnClick;
  * Created by ft on 2018/8/22.
  */
 public class PersonalFragment extends BottomItemFragment {
+
+    private long mExitTime = 0;
+    private final static long EXIT_TIME = 2000L;
 
     @BindView(R2.id.rl_harder_bg)
     RelativeLayout relativeLayout = null;
@@ -75,13 +83,14 @@ public class PersonalFragment extends BottomItemFragment {
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
-                //.setDelegate()
+                .setDelegate(new AddersFragment())
                 .setText("收货地址")
                 .build();
 
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SystemSetupFragment())
                 .setText("系统设置")
                 .build();
         final ListBean collection = new ListBean.Builder()
@@ -112,11 +121,30 @@ public class PersonalFragment extends BottomItemFragment {
         mRvSettings.setLayoutManager(layoutManager);
         ListAdapter listAdapter = new ListAdapter(dataBeans);
         mRvSettings.setAdapter(listAdapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         relativeLayout.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+        if (System.currentTimeMillis() - mExitTime < EXIT_TIME) {
+            if (mExitTime != 0) {
+                mExitTime = 0;
+            }
+            if (_mActivity != null && !_mActivity.isFinishing()) {
+                _mActivity.finish();
+                System.exit(0);
+            }
+        } else {
+            Toast.makeText(getContext(), "双击退出" + getString(com.yy.core.R.string.app_name), Toast.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+            return true;
+        }
+        return false;
     }
 }

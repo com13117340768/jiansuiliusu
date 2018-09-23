@@ -172,7 +172,7 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
     //QQ登录
     @OnClick(R2.id.icon_sign_in_qq)
     void QQLoginClick() {
-        AlertToast("QQ登录");
+        AlertToast("QQ快捷登录暂未接入");
     }
 
     @SuppressWarnings("deprecation")
