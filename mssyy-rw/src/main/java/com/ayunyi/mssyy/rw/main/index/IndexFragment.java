@@ -26,6 +26,7 @@ import java.util.Objects;
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by ft on 2018/8/13.
  */
-public class IndexFragment extends BottomItemFragment implements RefreshListen {
+public class IndexFragment extends BottomItemFragment{
 
 
     @BindView(R2.id.rv_index)
@@ -51,6 +52,10 @@ public class IndexFragment extends BottomItemFragment implements RefreshListen {
     AppCompatEditText mSearchView = null;
     private RefreshHandler mRefreshHandler = null;
 
+    @OnClick(R2.id.icon_index_scan)
+    void ScanOnclick() {
+        startScanWithCheck(this.getParentDelegate());
+    }
 
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
@@ -73,26 +78,20 @@ public class IndexFragment extends BottomItemFragment implements RefreshListen {
     public Object setLayout() {
         return R.layout.delegate_index;
     }
-
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        mToolbar.getBackground().setAlpha(0);//设置toolbar的背景透明度初始为0
-        initRecyclerView();
-        initRefreshLayout();
-        loadIndex(getContext());
-
-    }
-
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView,
-                new IndexDataConverter(), this);
+                new IndexDataConverter());
 
     }
-
-    public void loadIndex(Context context) {
-        mRefreshHandler.firstPage(context, "baidu_image.php");
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+      //  mToolbar.getBackground().setAlpha(0);//设置toolbar的背景透明度初始为0
+        mToolbar.getBackground().mutate().setAlpha(0);//09.25  08:00
+        initRecyclerView();
+        initRefreshLayout();
+        mRefreshHandler.firstPage("baidu_image.php");
     }
 
 
@@ -159,10 +158,5 @@ public class IndexFragment extends BottomItemFragment implements RefreshListen {
                 });
 
 
-    }
-
-    @Override
-    public void refresh(Bundle bundle) {
-        loadIndex(getContext());
     }
 }

@@ -55,7 +55,6 @@ public class OrderListDelegate extends RedWineFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
 
         RestClient.builder()
                 .loader(getContext())

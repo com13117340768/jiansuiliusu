@@ -17,11 +17,16 @@ public class RedWineCamera {
                         FileUtil.getFileNameByTime("IMG", "jpg")).getPath());
     }
 
-    public static void start(PermissionFragment delegate) {
-        new CameraHandler(delegate).beginCameraDialog();
+    public static void start(PermissionFragment fragment) {
+        new CameraHandler(fragment).beginCameraDialog();
     }
 
-    public static void startWrite(PermissionFragment delegate) {
-        new CameraHandler(delegate).takePhoto();
+    public static void startWrite(PermissionFragment fragment) {
+        new CameraHandler(fragment).takePhoto();
     }
+
+    public static void startScanner(PermissionFragment fragment){
+
+    }
+
 }

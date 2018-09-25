@@ -29,7 +29,6 @@ public class SortFragment extends BottomItemFragment {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        mToolbar.setBackgroundColor(this.getResources().getColor(com.yy.core.R.color.app_main_color));
     }
 
     @Override

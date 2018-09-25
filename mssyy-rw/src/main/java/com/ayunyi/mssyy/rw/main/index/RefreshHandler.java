@@ -1,22 +1,17 @@
 package com.ayunyi.mssyy.rw.main.index;
 
-import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yy.core.app.RedWine;
 import com.yy.core.net.RestClient;
-import com.yy.core.net.callback.IError;
-import com.yy.core.net.callback.IFailure;
 import com.yy.core.net.callback.ISuccess;
 import com.yy.core.ui.recycler.DataConverter;
 import com.yy.core.ui.recycler.MultipleRecyclerAdapter;
-
-import java.io.UnsupportedEncodingException;
+import com.yy.core.util.logger.FengLogger;
 
 /**
  * Created by ft on 2018/8/14.
@@ -25,110 +20,66 @@ import java.io.UnsupportedEncodingException;
 public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
         , BaseQuickAdapter.RequestLoadMoreListener {
 
-    private SwipeRefreshLayout mSwipeRefreshLayout = null;
-    private PagingBean mPagingBean = null;
-    private RecyclerView mRecyclerView = null;
-    private MultipleRecyclerAdapter mRecyclerAdapter = null;
-    private DataConverter mConverter = null;
-    private IndexFragment IndexDelegate = null;
-    private Context mContext = null;
+    private final SwipeRefreshLayout REFRESH_LAYOUT;
+    private final PagingBean BEAN;
+    private final RecyclerView RECYCLERVIEW;
+    private MultipleRecyclerAdapter mAdapter = null;
+    private final DataConverter CONVERTER;
 
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                            RecyclerView recyclerView,
-                           DataConverter dataConverter,
-                           PagingBean pagingBean,
-                           IndexFragment indexDelegate
-    ) {
-        this.mSwipeRefreshLayout = swipeRefreshLayout;
-        this.mConverter = dataConverter;
-        this.mPagingBean = pagingBean;
-        this.mRecyclerView = recyclerView;
-        this.IndexDelegate = indexDelegate;
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+                           DataConverter converter, PagingBean bean) {
+        this.REFRESH_LAYOUT = swipeRefreshLayout;
+        this.RECYCLERVIEW = recyclerView;
+        this.CONVERTER = converter;
+        this.BEAN = bean;
+        REFRESH_LAYOUT.setOnRefreshListener(this);
     }
-
 
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
-                                        RecyclerView recyclerView,
-                                        DataConverter dataConverter,
-                                        IndexFragment indexDelegate
-    ) {
-        return new RefreshHandler(swipeRefreshLayout, recyclerView, dataConverter, new PagingBean(), indexDelegate);
+                                        RecyclerView recyclerView, DataConverter converter) {
+        return new RefreshHandler(swipeRefreshLayout, recyclerView, converter, new PagingBean());
     }
-
-
-    @Override
-    public void onRefresh() {
-             refresh();
-    }
-
 
     private void refresh() {
+        REFRESH_LAYOUT.setRefreshing(true);
         RedWine.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
+                REFRESH_LAYOUT.setRefreshing(false);
             }
-        }, 2000);
+        }, 1000);
     }
 
-//    public void firstPage(Context context, String url) {
-//        firstPage(context, url, null);
-//    }
-
-    public void firstPage(Context context, String url) {
-        mContext = context;
-
+    public void firstPage(String url) {
+        BEAN.setDelayed(1000);
         RestClient.builder()
                 .url(url)
-                .loader(context)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-
-                        Log.d("hahaha", response);
-
-                        String info = null;
-                        try {
-                            info = new String(response.getBytes(), "utf-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                        final JSONObject jsonObject = JSON.parseObject(info);
-                        mPagingBean.setTotal(jsonObject.getInteger("total"))
-                                .setPageSize(jsonObject.getInteger("page_size"));
-                        mRecyclerAdapter = MultipleRecyclerAdapter.create(mConverter.setJsonData(info));
-                        mRecyclerAdapter.setOnLoadMoreListener(RefreshHandler.this, mRecyclerView);
-                        mRecyclerView.setAdapter(mRecyclerAdapter);
-                        mPagingBean.addIndex();
-
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Log.d("hahaha", "" + code);
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Log.d("hahaha", "失败");
+                        final JSONObject object = JSON.parseObject(response);
+                        BEAN.setTotal(object.getInteger("total"))
+                                .setPageSize(object.getInteger("page_size"));
+                        //设置Adapter
+                        mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                        mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
+                        RECYCLERVIEW.setAdapter(mAdapter);
+                        BEAN.addIndex();
                     }
                 })
                 .build()
                 .get();
     }
 
-    @SuppressWarnings("Convert2Lambda")
     private void paging(final String url) {
-        final int pageSize = mPagingBean.getPageSize();
-        final int currentCount = mPagingBean.getCurrentCount();
-        final int total = mPagingBean.getTotal();
-        final int index = mPagingBean.getPageIndex();
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
 
-        if (mRecyclerAdapter.getData().size() < pageSize || currentCount >= total) {
-            mRecyclerAdapter.loadMoreEnd(true);
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd(true);
         } else {
             RedWine.getHandler().postDelayed(new Runnable() {
                 @Override
@@ -138,13 +89,18 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                             .success(new ISuccess() {
                                 @Override
                                 public void onSuccess(String response) {
-                                    Log.d("paging", response);
-                                    mConverter.clearData();
-                                    mRecyclerAdapter.addData(mConverter.setJsonData(response).convert());
+                                    FengLogger.json("paging", response);
+                                //    CONVERTER.clearData();
+                                    mAdapter.setNewData(CONVERTER.setJsonData(response).convert());
                                     //累加数量
-                                    mPagingBean.setCurrentCount(mRecyclerAdapter.getData().size());
-                                    mRecyclerAdapter.loadMoreComplete();
-                                    mPagingBean.addIndex();
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+
+
+                                    mAdapter.loadMoreEnd();
+
+
                                 }
                             })
                             .build()
@@ -154,10 +110,15 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
         }
     }
 
+    @Override
+    public void onRefresh() {
+        refresh();
+    }
+
 
     @Override
     public void onLoadMoreRequested() {
-    //    paging("refresh.php?index=");
-        firstPage(mContext, "baidu_image.php");
+        paging("refresh.php?index=");
+     //   firstPage("baidu_image.php");
     }
 }

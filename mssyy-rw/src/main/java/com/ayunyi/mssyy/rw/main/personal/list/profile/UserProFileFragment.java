@@ -52,7 +52,6 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main));
     }
 
     @Override

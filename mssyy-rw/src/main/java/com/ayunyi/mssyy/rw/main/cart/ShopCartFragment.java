@@ -192,8 +192,6 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        mToolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
-        textView.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
         RestClient.builder()
                 .url("shop_cart.php")
                 .loader(getContext())

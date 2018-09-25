@@ -38,7 +38,6 @@ public class DiscoverFragment extends BottomItemFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        mToolbar.setBackgroundColor(this.getResources().getColor(R.color.app_main_color));
     }
 
 }

@@ -12,6 +12,7 @@ import com.yalantis.ucrop.UCrop;
 import com.yy.core.ui.camera.CameraImageBean;
 import com.yy.core.ui.camera.RedWineCamera;
 import com.yy.core.ui.camera.RequestCodes;
+import com.yy.core.ui.scanner.ScannerFragment;
 import com.yy.core.util.callback.CallbackManager;
 import com.yy.core.util.callback.CallbackType;
 import com.yy.core.util.callback.IGlobalCallback;
@@ -39,6 +40,11 @@ public abstract class PermissionFragment extends BaseFragment {
         RedWineCamera.startWrite(this);
     }
 
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseFragment delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerFragment(), RequestCodes.SCAN);
+    }
+
     public void startWriteWithCheck() {
         PermissionFragmentPermissionsDispatcher.startWriteWithPermissionCheck(this);
     }
@@ -48,14 +54,9 @@ public abstract class PermissionFragment extends BaseFragment {
 
     }
 
-    @NeedsPermission(Manifest.permission.CAMERA)
-    void startScan(BaseFragment delegate) {
-        //    delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCodes.SCAN);
+    public void startScanWithCheck(BaseFragment delegate) {
+        PermissionFragmentPermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
     }
-
-    //  public void startScanWithCheck(BaseFragment delegate) {
-    //       //  PermissionFragmentPermissionsDispatcher.startScanWithCheck(this, delegate);
-    //  }
 
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -72,7 +73,6 @@ public abstract class PermissionFragment extends BaseFragment {
     void onWriteRationale(PermissionRequest request) {
         showRationaleDialog(request);
     }
-
 
 
     @OnPermissionDenied({Manifest.permission.CAMERA})
@@ -121,7 +121,6 @@ public abstract class PermissionFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
         FengLogger.d("requestCode", requestCode);
         FengLogger.d("resultCode", resultCode);
-
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case RequestCodes.TAKE_PHOTO:
@@ -143,8 +142,7 @@ public abstract class PermissionFragment extends BaseFragment {
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-                    @SuppressWarnings("unchecked")
-                    final IGlobalCallback<Uri> callback = CallbackManager
+                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
                     if (callback != null) {
