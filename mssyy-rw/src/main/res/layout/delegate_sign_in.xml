@@ -92,7 +92,6 @@
                         android:id="@+id/edit_sign_in_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:cursorVisible="false"
                         android:hint="用户名/邮箱/手机号"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"

@@ -261,6 +261,11 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
         } else {
             ic_clean_pass.setVisibility(View.GONE);
         }
+    }
 
+
+    @Override
+    public boolean onBackPressedSupport() {
+        return true;
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="@android:color/holo_red_light">
+                <!--scroll|enterAlwaysCollapsed:向下滚动NestedScrollView到最底端时该布局才会显示出来 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.bigkoo.convenientbanner.ConvenientBanner
+                        android:id="@+id/detail_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="260dp" />
+
+                    <android.support.v7.widget.ContentFrameLayout
+                        android:id="@+id/frame_goods_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/detail_banner" />
+                </RelativeLayout>
+                <!-- pin:在滑动过程中,此自布局会固定在它所在的位置不动,
+                直到CollapsingToolbarLayout全部折叠或者全部展开 -->
+                <!--要放在下面-->
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/goods_detail_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.joanzapata.iconify.widget.IconTextView
+                            android:id="@+id/icon_goods_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center"
+                            android:text="{icon-return}"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="25sp" />
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_detail_title_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="商品详情"
+                            android:textColor="@android:color/holo_orange_dark"
+                            android:textSize="20sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+                <!--如果将TabLayout写在这里，将透明-->
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <!--suppress AndroidDomInspection -->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <include layout="@layout/layout_goods_detail_bottom" />
+
+</RelativeLayout>

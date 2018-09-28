@@ -36,7 +36,9 @@
                 android:paddingRight="18dp"
                 android:text="{qr-code}"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+
+                />
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_search_view"
@@ -46,8 +48,9 @@
                 android:layout_weight="4"
                 android:background="@android:color/white"
                 android:gravity="center_vertical"
-                android:hint="搜索"
-                android:paddingLeft="15dp" />
+                android:drawableLeft="@android:drawable/ic_menu_search"
+                android:paddingLeft="15dp"
+                />
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_message"

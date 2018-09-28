@@ -5,11 +5,12 @@
     android:background="#f5f5f5"
     android:orientation="vertical">
 
+    <!--suppress AndroidDomInspection -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_name"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_red_light" />
+        android:background="@android:color/holo_red_dark" />
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"

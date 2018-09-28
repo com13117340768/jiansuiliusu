@@ -145,6 +145,9 @@ public abstract class PermissionFragment extends BaseFragment {
                     @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
+
+                    FengLogger.d("fengtao",cropUri);
+
                     if (callback != null) {
                         callback.executeCallback(cropUri);
                     }

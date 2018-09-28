@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.personal.list.ListAdapter;
-import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
-import com.ayunyi.mssyy.rw.main.personal.list.ListItemType;
+import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
+import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
+import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
 import com.ayunyi.mssyy.rw.main.personal.setup.about.AboutFragment;
 import com.yy.core.fragments.RedWineFragment;
 

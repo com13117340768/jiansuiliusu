@@ -64,7 +64,6 @@ public class LauncherFragment extends RedWineFragment {
 
             @Override
             public void onFinish() {
-                ExitTimer();
                 checkIsShowLogin();
             }
         };
@@ -77,6 +76,11 @@ public class LauncherFragment extends RedWineFragment {
         super.onDestroy();
     }
 
+    @Override
+    public void onStop() {
+        ExitTimer();
+        super.onStop();
+    }
 
     private void ExitTimer() {
         if (countDownTimer != null) {

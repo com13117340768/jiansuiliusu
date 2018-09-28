@@ -71,7 +71,6 @@ public abstract class BaseBottomFragment extends RedWineFragment implements View
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         final int size = ITEMS.size();
-        Log.d("HAHAHA", "size=" + size);
         for (int i = 0; i < size; i++) {
             LayoutInflater.from(getContext()).inflate(R.layout.botton_item_icon_text_layout, mBottomBar);
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);

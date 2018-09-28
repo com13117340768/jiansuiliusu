@@ -187,7 +187,7 @@ public class LoadingAndRetryLayout extends FrameLayout
         View loadingView = mLoadingView;
         if (loadingView != null)
         {
-            Log.w(TAG, "you have already set a loading view and would be instead of this new one.");
+            Log.w(TAG, "you have already set loading_error loading view and would be instead of this new one.");
         }
         removeView(loadingView);
         addView(view);
@@ -200,7 +200,7 @@ public class LoadingAndRetryLayout extends FrameLayout
         View emptyView = mEmptyView;
         if (emptyView != null)
         {
-            Log.w(TAG, "you have already set a empty view and would be instead of this new one.");
+            Log.w(TAG, "you have already set loading_error empty view and would be instead of this new one.");
         }
         removeView(emptyView);
         addView(view);
@@ -213,7 +213,7 @@ public class LoadingAndRetryLayout extends FrameLayout
         View retryView = mRetryView;
         if (retryView != null)
         {
-            Log.w(TAG, "you have already set a retry view and would be instead of this new one.");
+            Log.w(TAG, "you have already set loading_error retry view and would be instead of this new one.");
         }
         removeView(retryView);
         addView(view);
@@ -227,7 +227,7 @@ public class LoadingAndRetryLayout extends FrameLayout
         View contentView = mContentView;
         if (contentView != null)
         {
-            Log.w(TAG, "you have already set a retry view and would be instead of this new one.");
+            Log.w(TAG, "you have already set loading_error retry view and would be instead of this new one.");
         }
         removeView(contentView);
         addView(view);

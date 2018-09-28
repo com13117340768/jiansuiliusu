@@ -1,8 +1,10 @@
-package com.ayunyi.mssyy.rw.main.personal.list.profile;
+package com.ayunyi.mssyy.rw.main.personal.user.profile;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,17 +13,20 @@ import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.personal.list.ListAdapter;
-import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
-import com.ayunyi.mssyy.rw.main.personal.list.ListItemType;
-import com.ayunyi.mssyy.rw.main.personal.list.settings.ISubmitReName;
-import com.ayunyi.mssyy.rw.main.personal.list.settings.NameFragment;
+import com.ayunyi.mssyy.rw.login.LoginFragment;
+import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
+import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
+import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
+import com.ayunyi.mssyy.rw.main.personal.user.settings.ISubmitReName;
+import com.ayunyi.mssyy.rw.main.personal.user.settings.NameFragment;
+import com.yy.core.app.AccountManager;
 import com.yy.core.fragments.RedWineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
@@ -36,10 +41,22 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     @BindView(R2.id.rv_user_profile)
     RecyclerView recyclerView = null;
 
-    @Override
-    public Object setLayout() {
-        return R.layout.delegate_user_profile;
+
+    @BindView(R2.id.user_exit_login_state)
+    AppCompatButton compatButton = null;
+
+
+    @OnClick(R2.id.user_exit_login_state)
+    void ExitLoginState() {
+        checkLoginState();
     }
+
+
+    @OnClick(R2.id.icon_exit)
+    void ExitUserProFile() {
+        getSupportDelegate().pop();
+    }
+
 
     View view = null;
 
@@ -55,8 +72,13 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+    public Object setLayout() {
+        return R.layout.delegate_user_profile;
+    }
 
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        setCheckState();
 
         NameFragment nameDelegate = new NameFragment();
         nameDelegate.setIReNameLister(this);
@@ -65,9 +87,9 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
 
         ListBean image = new ListBean.Builder()
                 .setId(UserProfileClickListener.image)
-                .setItemType(ListItemType.ITEM_AVATAR)
+                .setItemType(ListItemType.ITEM_USER_PROFILE)
                 .setImageUrl("http://img2.woyaogexing.com/2017/09/02/d5c9dceec0060119%21400x400_big.jpg")
-                .setValue("上传头像")
+                .setValue("头像")
                 .build();
 
         ListBean name = new ListBean.Builder()
@@ -111,5 +133,31 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     public void submitReName(String rename) {
         final AppCompatTextView textView = view.findViewById(R.id.tv_arrow_value_one);
         textView.setText(rename);
+    }
+
+
+    private boolean setCheckState() {
+        if (!AccountManager.checkAccount()) {
+            compatButton.setText("点击登录");
+            compatButton.setBackgroundColor(Color.GRAY);
+            return false;
+        } else {
+            compatButton.setText("退出登录");
+            compatButton.setBackgroundColor(Color.RED);
+            return true;
+        }
+    }
+
+    private void checkLoginState() {
+        if (setCheckState()) {
+            AccountManager.setSignState(false);
+            setCheckState();
+            //执行退出登录逻辑
+        } else {
+            //执行登录逻辑
+            getSupportDelegate().pop();
+            getSupportDelegate().start(new LoginFragment());
+        }
+
     }
 }

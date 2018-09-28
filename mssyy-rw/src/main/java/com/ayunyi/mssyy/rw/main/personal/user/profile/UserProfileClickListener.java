@@ -1,20 +1,17 @@
-package com.ayunyi.mssyy.rw.main.personal.list.profile;
+package com.ayunyi.mssyy.rw.main.personal.user.profile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
-import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
+import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
-import com.orhanobut.logger.Logger;
-import com.yy.core.app.RedWine;
 import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.ISuccess;
@@ -51,14 +48,11 @@ public class UserProfileClickListener extends SimpleClickListener {
         final int id = bean.getId();
         switch (id) {
             case image:
-                DELEGATE.startCameraWithCheck();
-
-                //noinspection Convert2Lambda
                 CallbackManager.getInstance().addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
                     @Override
                     public void executeCallback(Uri uri) {
                         FengLogger.d("ON_CROP",uri.getPath());
-                        CircleImageView circleImageView = view.findViewById(R.id.img_arrow_avatar);
+                        CircleImageView circleImageView = view.findViewById(R.id.img_user_profile);
                         Glide.with(DELEGATE)
                                 .load(uri)
                                 .into(circleImageView);
@@ -66,7 +60,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                         RestClient.builder()
                                 .url("baidu_image.php")
                                 .loader(DELEGATE.getContext())
-                                //    .file(uri.getPath())
+                              //  .file(uri.getPath())
                                 .success(new ISuccess() {
                                     @Override
                                     public void onSuccess(String response) {
@@ -87,10 +81,11 @@ public class UserProfileClickListener extends SimpleClickListener {
                                     }
                                 })
                                 .build()
-                                // .upload()
+                              //   .upload();
                                 .get();
                     }
                 });
+                DELEGATE.startCameraWithCheck();
                 break;
             case name:
                 RedWineFragment latteFragment = bean.getDelegate();

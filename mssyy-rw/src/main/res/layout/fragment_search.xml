@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--suppress AndroidDomInspection -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_main_page"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_main">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/icon_top_search_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="{icon-return}"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_search_view"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="4"
+                    android:singleLine="true"
+                    android:cursorVisible="true"
+                    android:imeOptions="actionSearch"
+                    android:textColorHint="@android:color/holo_red_dark"
+                    android:paddingLeft="10dp"
+                    android:hint="香槟|白兰地"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@android:drawable/ic_menu_search"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_top_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="搜索"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.v7.widget.LinearLayoutCompat>

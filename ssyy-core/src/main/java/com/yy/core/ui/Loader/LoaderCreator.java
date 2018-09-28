@@ -18,7 +18,6 @@ public final class LoaderCreator {
             LOADING_MAP.put(type, indicator);
         }
         avLoadingIndicatorView.setIndicator(LOADING_MAP.get(type));
-
         return avLoadingIndicatorView;
     }
 

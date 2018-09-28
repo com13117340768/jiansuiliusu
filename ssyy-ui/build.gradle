@@ -40,9 +40,11 @@ dependencies {
     //Banner依赖
     api 'com.youth.banner:banner:1.4.10'
     //View动画依赖
-    implementation 'com.nineoldandroids:library:2.4.0'
+    /*implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.easing:library:2.1@aar'
-    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'*/
+
+
     implementation "com.google.auto.value:auto-value-annotations:1.6"
     annotationProcessor "com.google.auto.value:auto-value:1.6"
 

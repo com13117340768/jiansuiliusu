@@ -21,7 +21,9 @@
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/tv_arrow_img_text"
         android:gravity="center"
-        android:text="未设置" />
+        android:text="未设置"
+
+        />
 
     <com.joanzapata.iconify.widget.IconTextView
 

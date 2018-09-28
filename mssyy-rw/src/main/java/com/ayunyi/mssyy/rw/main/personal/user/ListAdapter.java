@@ -1,4 +1,4 @@
-package com.ayunyi.mssyy.rw.main.personal.list;
+package com.ayunyi.mssyy.rw.main.personal.user;
 
 import android.support.v7.widget.SwitchCompat;
 import android.widget.ImageView;
@@ -29,7 +29,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
         addItemType(ListItemType.ITEM_NORMAL, R.layout.arrow_item_layout);
         addItemType(ListItemType.ITEM_AVATAR, R.layout.arrow_item_avatar);
         addItemType(ListItemType.ITEM_SWITCH, R.layout.arrow_switch_layout);
-
+        addItemType(ListItemType.ITEM_USER_PROFILE, R.layout.arrow_item_user_profile);
     }
 
     @Override
@@ -57,6 +57,12 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
                 final SwitchCompat switchCompat = helper.getView(R.id.list_item_switch);
                 switchCompat.setChecked(true);
                 switchCompat.setOnCheckedChangeListener(item.getOnCheckedChangeListener());
+                break;
+            case ListItemType.ITEM_USER_PROFILE:
+                Glide.with(mContext)
+                        .load(item.getImageUrl())
+                        .apply(OPTIONS)
+                        .into((ImageView) helper.getView(R.id.img_user_profile));
                 break;
             default:
                 break;

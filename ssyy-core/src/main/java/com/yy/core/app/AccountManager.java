@@ -11,6 +11,7 @@ public class AccountManager {
     private enum SignTag {
         SIGN_TAG
     }
+
     public static void setSignState(boolean state) {
         LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
     }
@@ -27,4 +28,13 @@ public class AccountManager {
         }
     }
 
+    public static boolean checkAccount() {
+        return isSignIn();
+    }
+
+    public static void exitLoginState() {
+        if (isSignIn()) {
+            LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), false);
+        }
+    }
 }

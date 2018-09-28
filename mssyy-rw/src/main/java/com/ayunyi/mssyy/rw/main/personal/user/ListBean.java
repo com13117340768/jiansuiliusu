@@ -1,4 +1,4 @@
-package com.ayunyi.mssyy.rw.main.personal.list;
+package com.ayunyi.mssyy.rw.main.personal.user;
 
 import android.widget.CompoundButton;
 

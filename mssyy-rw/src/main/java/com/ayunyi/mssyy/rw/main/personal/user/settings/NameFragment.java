@@ -1,4 +1,4 @@
-package com.ayunyi.mssyy.rw.main.personal.list.settings;
+package com.ayunyi.mssyy.rw.main.personal.user.settings;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

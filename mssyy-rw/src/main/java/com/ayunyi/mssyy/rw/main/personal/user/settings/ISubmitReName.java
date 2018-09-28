@@ -1,4 +1,4 @@
-package com.ayunyi.mssyy.rw.main.personal.list.settings;
+package com.ayunyi.mssyy.rw.main.personal.user.settings;
 
 /**
  * Created by ft on 2018/9/14.

@@ -11,6 +11,7 @@ import com.ayunyi.mssyy.rw.login.FromWhereOnLoginTag;
 import com.ayunyi.mssyy.rw.login.ISignListener;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
 import com.ayunyi.mssyy.rw.main.EcBottomFragment;
+import com.ayunyi.mssyy.rw.main.index.search.SearchFragment;
 import com.yy.core.activities.ProxyActivity;
 import com.yy.core.app.IUserChecker;
 import com.yy.core.fragments.RedWineFragment;

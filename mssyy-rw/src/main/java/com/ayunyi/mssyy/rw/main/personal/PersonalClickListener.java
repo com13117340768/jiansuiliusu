@@ -2,7 +2,7 @@ package com.ayunyi.mssyy.rw.main.personal;
 
 import android.view.View;
 
-import com.ayunyi.mssyy.rw.main.personal.list.ListBean;
+import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.yy.core.fragments.RedWineFragment;
