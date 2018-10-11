@@ -13,5 +13,4 @@ public abstract class WebFragment extends RedWineFragment {
 
     private WebView webView = null;
     private final ReferenceQueue<WebView> webViewRequestOptions = new ReferenceQueue<>();
-
 }

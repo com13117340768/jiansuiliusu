@@ -14,17 +14,24 @@ public class ListBean implements MultiItemEntity {
     private String mText = null;
     private String mValue = null;
     private int mId = 0;
+    private int tag = 0;
     private RedWineFragment mDelegate = null;
+
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
 
-    ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, RedWineFragment mDelegate, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
+    ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, RedWineFragment mDelegate, int mTag, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
         this.mItemType = mItemType;
         this.mImageUrl = mImageUrl;
         this.mText = mText;
         this.mValue = mValue;
         this.mId = mId;
+        this.tag = mTag;
         this.mDelegate = mDelegate;
         this.mOnCheckedChangeListener = mOnCheckedChangeListener;
+    }
+
+    public int getTag() {
+        return tag;
     }
 
     public String getImageUrl() {
@@ -63,7 +70,7 @@ public class ListBean implements MultiItemEntity {
     }
 
     public static final class Builder {
-
+        private int tag = 0;
         private int id = 0;
         private int itemType = 0;
         private String imageUrl = null;
@@ -84,6 +91,11 @@ public class ListBean implements MultiItemEntity {
 
         public Builder setImageUrl(String imageUrl) {
             this.imageUrl = imageUrl;
+            return this;
+        }
+
+        public Builder setTag(int tag) {
+            this.tag = tag;
             return this;
         }
 
@@ -108,7 +120,7 @@ public class ListBean implements MultiItemEntity {
         }
 
         public ListBean build() {
-            return new ListBean(itemType, imageUrl, text, value, id, delegate, onCheckedChangeListener);
+            return new ListBean(itemType, imageUrl, text, value, id, delegate, tag, onCheckedChangeListener);
         }
     }
 }

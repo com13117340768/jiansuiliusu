@@ -89,7 +89,9 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
     //退出的点击事件
     @OnClick(R2.id.icon_exit)
     void ExitClick() {
-        AlertToast("退出的点击事件");
+        //AlertToast("退出的点击事件");
+        AlertToast("跳过登录界面");
+        getSupportDelegate().startWithPop(new EcBottomFragment());
     }
 
     @OnClick(R2.id.exit_clean_user)
@@ -131,7 +133,7 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
                         @Override
                         public void onSuccess(String response) {
                             Logger.json(response);
-                            SignHandler.onSignIn(response,signListener);
+                            SignHandler.onSignIn(response, signListener);
                         }
                     })
                     .error(new IError() {

@@ -65,9 +65,18 @@ public class SystemSetupFragment extends RedWineFragment {
                 .setText("关于")
                 .build();
 
+        ListBean upDataApp = new ListBean.Builder()
+                .setId(3)
+                .setItemType(ListItemType.ITEM_NORMAL)
+                .setDelegate(new AboutFragment())
+                .setText("检查更新")
+                .build();
+
+
         List<ListBean> listBeans = new ArrayList<>();
         listBeans.add(push);
         listBeans.add(about);
+        listBeans.add(upDataApp);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);

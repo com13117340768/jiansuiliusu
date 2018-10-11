@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,13 +15,18 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
+import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
 import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
 import com.ayunyi.mssyy.rw.main.personal.user.settings.ISubmitReName;
 import com.ayunyi.mssyy.rw.main.personal.user.settings.NameFragment;
+import com.bumptech.glide.Glide;
+import com.hss01248.dialog.StyledDialog;
+import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.yy.core.app.AccountManager;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.util.sharepreference.RedWinePreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,26 +85,48 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         setCheckState();
-
         NameFragment nameDelegate = new NameFragment();
         nameDelegate.setIReNameLister(this);
-
         view = rootView;
+        ListBean image;
+        String uriPah = RedWinePreference.getCustomAppProfile(UserPerpesKeys.URI_PATH);
+        if (!uriPah.isEmpty()) {
+            image = new ListBean.Builder()
+                    .setId(UserProfileClickListener.image)
+                    .setItemType(ListItemType.ITEM_USER_PROFILE)
+                    .setImageUrl(uriPah)
+                    .setValue("头像")
+                    .build();
 
-        ListBean image = new ListBean.Builder()
-                .setId(UserProfileClickListener.image)
-                .setItemType(ListItemType.ITEM_USER_PROFILE)
-                .setImageUrl("http://img2.woyaogexing.com/2017/09/02/d5c9dceec0060119%21400x400_big.jpg")
-                .setValue("头像")
-                .build();
+        } else {
+            image = new ListBean.Builder()
+                    .setId(UserProfileClickListener.image)
+                    .setItemType(ListItemType.ITEM_USER_PROFILE)
+                    .setImageUrl("http://img2.woyaogexing.com/2017/09/02/d5c9dceec0060119%21400x400_big.jpg")
+                    .setValue("头像")
+                    .build();
+        }
+        ListBean name;
 
-        ListBean name = new ListBean.Builder()
-                .setId(UserProfileClickListener.name)
-                .setText("昵称")
-                .setDelegate(nameDelegate)
-                .setItemType(ListItemType.ITEM_NAME)
-                .setValue("未设置昵称")
-                .build();
+        String uName = RedWinePreference.getCustomAppProfile(UserPerpesKeys.USER_NAME);
+        if (!uName.isEmpty()) {
+            name = new ListBean.Builder()
+                    .setId(UserProfileClickListener.name)
+                    .setText("昵称")
+                    .setDelegate(nameDelegate)
+                    .setItemType(ListItemType.ITEM_NAME)
+                    .setValue(uName)
+                    .build();
+
+        } else {
+            name = new ListBean.Builder()
+                    .setId(UserProfileClickListener.name)
+                    .setText("昵称")
+                    .setDelegate(nameDelegate)
+                    .setItemType(ListItemType.ITEM_NAME)
+                    .setValue("未设置昵称")
+                    .build();
+        }
 
         ListBean sex = new ListBean.Builder()
                 .setId(UserProfileClickListener.sex)
@@ -132,6 +160,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     @Override
     public void submitReName(String rename) {
         final AppCompatTextView textView = view.findViewById(R.id.tv_arrow_value_one);
+        RedWinePreference.addCustomAppProfile(UserPerpesKeys.USER_NAME, rename);
         textView.setText(rename);
     }
 
@@ -150,9 +179,24 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
 
     private void checkLoginState() {
         if (setCheckState()) {
-            AccountManager.setSignState(false);
-            setCheckState();
-            //执行退出登录逻辑
+            StyledDialog.buildMdAlert("确认退出登录？", "", new MyDialogListener() {
+                @Override
+                public void onFirst() {
+                    AccountManager.setSignState(false);
+                    setCheckState();
+                    getSupportDelegate().pop();
+                    //执行退出登录逻辑
+                }
+
+                @Override
+                public void onSecond() {
+
+                }
+            })
+                    .setTitleColor(R.color.app_main_color)
+                    .setBtnColor(R.color.app_main_color, R.color.app_main_color, R.color.app_main_color)
+                    .show();
+
         } else {
             //执行登录逻辑
             getSupportDelegate().pop();

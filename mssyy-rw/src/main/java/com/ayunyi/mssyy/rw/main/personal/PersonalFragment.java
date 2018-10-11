@@ -3,6 +3,7 @@ package com.ayunyi.mssyy.rw.main.personal;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,20 +12,26 @@ import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
+import com.ayunyi.mssyy.rw.login.LoginFragment;
+import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
 import com.ayunyi.mssyy.rw.main.personal.address.AddersFragment;
+import com.ayunyi.mssyy.rw.main.personal.order.OrderListFragment;
 import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
-import com.ayunyi.mssyy.rw.main.personal.order.OrderListDelegate;
 import com.ayunyi.mssyy.rw.main.personal.user.profile.UserProFileFragment;
 import com.ayunyi.mssyy.rw.main.personal.setup.SystemSetupFragment;
+import com.bumptech.glide.Glide;
+import com.yy.core.app.AccountManager;
 import com.yy.core.fragments.bottom.BottomItemFragment;
+import com.yy.core.util.sharepreference.RedWinePreference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by ft on 2018/8/22.
@@ -37,6 +44,13 @@ public class PersonalFragment extends BottomItemFragment {
     @BindView(R2.id.rl_harder_bg)
     RelativeLayout relativeLayout = null;
 
+    @BindView(R2.id.img_user_avatar)
+    CircleImageView uPortImageView = null;
+
+
+    @BindView(R2.id.tv_user_name)
+    AppCompatTextView uNameTextView = null;
+
     private Bundle mArgs = null;
     public static final String ORDER_TYPE = "ORDER_TYPE";
 
@@ -45,7 +59,7 @@ public class PersonalFragment extends BottomItemFragment {
     RecyclerView mRvSettings = null;
 
     private void startOrderListByType() {
-        final OrderListDelegate orderListDelegate = new OrderListDelegate();
+        final OrderListFragment orderListDelegate = new OrderListFragment();
         orderListDelegate.setArguments(mArgs);
         getParentDelegate().getSupportDelegate().start(orderListDelegate);
     }
@@ -59,7 +73,21 @@ public class PersonalFragment extends BottomItemFragment {
 
     @OnClick(R2.id.img_user_avatar)
     void OnClickImage() {
-        getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+        if (CheckLoginState()) {
+            getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+        } else {
+            getParentDelegate().getSupportDelegate().start(new LoginFragment());
+        }
+    }
+
+
+    @OnClick(R2.id.tv_user_name)
+    void OnClickUserText() {
+        if (CheckLoginState()) {
+            getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+        } else {
+            getParentDelegate().getSupportDelegate().start(new LoginFragment());
+        }
     }
 
 
@@ -77,6 +105,7 @@ public class PersonalFragment extends BottomItemFragment {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+
 
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
@@ -143,5 +172,38 @@ public class PersonalFragment extends BottomItemFragment {
             return true;
         }
         return false;
+    }
+
+
+    private boolean CheckLoginState() {
+        return AccountManager.checkAccount();
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+
+        if (CheckLoginState()) {
+            Toast.makeText(getContext(), "已经登录*****", Toast.LENGTH_SHORT).show();
+            String uriPah = RedWinePreference.getCustomAppProfile(UserPerpesKeys.URI_PATH);
+            if (!uriPah.isEmpty()) {
+                Glide.with(this)
+                        .load(uriPah)
+                        .into(uPortImageView);
+            } else {
+                uPortImageView.setImageResource(R.drawable.not_logged_in);
+            }
+            String uName = RedWinePreference.getCustomAppProfile(UserPerpesKeys.USER_NAME);
+            if (!uName.isEmpty()) {
+                uNameTextView.setText(uName);
+            } else {
+                uNameTextView.setText("点击登录");
+            }
+
+        } else {
+            Toast.makeText(getContext(), "未登录*****", Toast.LENGTH_SHORT).show();
+            uPortImageView.setImageResource(R.drawable.not_logged_in);
+            uNameTextView.setText("点击登录");
+        }
     }
 }

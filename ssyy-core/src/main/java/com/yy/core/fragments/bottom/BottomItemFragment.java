@@ -2,6 +2,7 @@ package com.yy.core.fragments.bottom;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -36,16 +37,14 @@ public abstract class BottomItemFragment extends RedWineFragment implements View
 //        FengLogger.d("feng",v);
 //        FengLogger.d("feng",keyCode);
 //        FengLogger.d("feng",event);
-
-
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+
             if (System.currentTimeMillis() - mExitTime < EXIT_TIME) {
                 if (mExitTime != 0) {
                     mExitTime = 0;
                 }
                 if (_mActivity != null && !_mActivity.isFinishing()) {
-                    _mActivity.finish();
-                    System.exit(0);
+                    ActivityCompat.finishAfterTransition(_mActivity);
                 }
             } else {
                 Toast.makeText(getContext(), "双击退出" + getString(R.string.app_name), Toast.LENGTH_SHORT).show();
@@ -58,11 +57,5 @@ public abstract class BottomItemFragment extends RedWineFragment implements View
 
     public BottomItemFragment getSupoFragment(){
         return this;
-    }
-
-    @Override
-    public boolean onBackPressedSupport() {
-     //   Toast.makeText(getContext(), "触发了onBackPressedSupport"+super.onBackPressedSupport(), Toast.LENGTH_SHORT).show();
-        return super.onBackPressedSupport();
     }
 }

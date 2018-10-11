@@ -38,17 +38,6 @@ public class CheckSignFragment extends RedWineFragment {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override

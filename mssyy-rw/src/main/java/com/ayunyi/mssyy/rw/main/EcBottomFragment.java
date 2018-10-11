@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.ayunyi.mssyy.rw.main.cart.ShopCartFragment;
 import com.ayunyi.mssyy.rw.main.discover.DiscoverFragment;
+import com.ayunyi.mssyy.rw.main.discover.fragmentation.SecondFragment;
 import com.ayunyi.mssyy.rw.main.index.IndexFragment;
 import com.ayunyi.mssyy.rw.main.personal.PersonalFragment;
 import com.ayunyi.mssyy.rw.main.sort.SortFragment;

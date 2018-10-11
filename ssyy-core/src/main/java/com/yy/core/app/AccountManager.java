@@ -1,6 +1,6 @@
 package com.yy.core.app;
 
-import com.yy.core.util.sharepreference.LattePreference;
+import com.yy.core.util.sharepreference.RedWinePreference;
 
 /**
  * Created by ft on 2018/9/19.
@@ -13,11 +13,11 @@ public class AccountManager {
     }
 
     public static void setSignState(boolean state) {
-        LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
+        RedWinePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
     }
 
     private static boolean isSignIn() {
-        return LattePreference.getAppFlag(SignTag.SIGN_TAG.name());
+        return RedWinePreference.getAppFlag(SignTag.SIGN_TAG.name());
     }
 
     public static void checkAccount(IUserChecker checker) {
@@ -34,7 +34,7 @@ public class AccountManager {
 
     public static void exitLoginState() {
         if (isSignIn()) {
-            LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), false);
+            RedWinePreference.setAppFlag(SignTag.SIGN_TAG.name(), false);
         }
     }
 }

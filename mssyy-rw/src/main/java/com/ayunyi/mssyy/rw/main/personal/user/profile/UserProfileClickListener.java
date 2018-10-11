@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
+import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,6 +21,7 @@ import com.yy.core.util.callback.CallbackManager;
 import com.yy.core.util.callback.CallbackType;
 import com.yy.core.util.callback.IGlobalCallback;
 import com.yy.core.util.logger.FengLogger;
+import com.yy.core.util.sharepreference.RedWinePreference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,7 +39,6 @@ public class UserProfileClickListener extends SimpleClickListener {
     private int chosen = 0;
     private UserProFileFragment DELEGATE;
     private String[] mGenders = new String[]{"男", "女", "保密"};
-
     UserProfileClickListener(UserProFileFragment delegate) {
         this.DELEGATE = delegate;
     }
@@ -51,16 +52,16 @@ public class UserProfileClickListener extends SimpleClickListener {
                 CallbackManager.getInstance().addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
                     @Override
                     public void executeCallback(Uri uri) {
-                        FengLogger.d("ON_CROP",uri.getPath());
+                        FengLogger.d("ON_CROP", uri.getPath());
                         CircleImageView circleImageView = view.findViewById(R.id.img_user_profile);
                         Glide.with(DELEGATE)
-                                .load(uri)
+                                .load(uri.getPath())
                                 .into(circleImageView);
 
                         RestClient.builder()
                                 .url("baidu_image.php")
                                 .loader(DELEGATE.getContext())
-                              //  .file(uri.getPath())
+                                //  .file(uri.getPath())
                                 .success(new ISuccess() {
                                     @Override
                                     public void onSuccess(String response) {
@@ -74,6 +75,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                                                     public void onSuccess(String response) {
                                                         //获取更新后的用户信息，然后更新本地数据库
                                                         Toast.makeText(DELEGATE.getContext(), "头像已保存数据库", Toast.LENGTH_SHORT).show();
+                                                        RedWinePreference.addCustomAppProfile(UserPerpesKeys.URI_PATH, uri.getPath());
                                                     }
                                                 })
                                                 .build()
@@ -81,7 +83,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                                     }
                                 })
                                 .build()
-                              //   .upload();
+                                //   .upload();
                                 .get();
                     }
                 });

@@ -11,9 +11,9 @@ import com.chad.library.adapter.base.listener.SimpleClickListener;
 
 public class OrderListClickListener extends SimpleClickListener {
 
-    private final OrderListDelegate DELEGATE;
+    private final OrderListFragment DELEGATE;
 
-    public OrderListClickListener(OrderListDelegate delegate) {
+    public OrderListClickListener(OrderListFragment delegate) {
         this.DELEGATE = delegate;
     }
 

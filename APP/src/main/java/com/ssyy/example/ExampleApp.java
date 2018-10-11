@@ -18,7 +18,7 @@ public class ExampleApp extends Application {
         super.onCreate();
         RedWine.init(this)
                 //       .withApiHost("http://mock.fulingjie.com/mock/api/")
-                .withApiHost("http://192.168.2.103:8080/RestServer/api/")
+                .withApiHost("http://192.168.2.102:8080/RestServer/api/")
                 //     .withApiHost("http://jiu.ayunyi.com/api/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontECModule())

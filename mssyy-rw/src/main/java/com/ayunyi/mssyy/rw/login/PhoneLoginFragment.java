@@ -99,13 +99,13 @@ public class PhoneLoginFragment extends RedWineFragment {
 
 
     private boolean checkFrom() {
-        boolean flag = true;
         String text = inputEditText.getText().toString().trim();
         if (text.length() < 11) {
             inputEditText.setError("手机号码格式有误!");
             return false;
+        } else {
+            phone = text;
         }
-        phone = text;
         return true;
     }
 

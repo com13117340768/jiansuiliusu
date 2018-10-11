@@ -24,7 +24,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * Created by ft on 2018/9/14.
  */
-public class OrderListDelegate extends RedWineFragment {
+public class OrderListFragment extends RedWineFragment {
 
 
     @BindView(R2.id.tb_shop_cart)
@@ -69,7 +69,7 @@ public class OrderListDelegate extends RedWineFragment {
                                 new OrderListDataConverter().setJsonData(response).convert();
                         final OrderListAdapter adapter = new OrderListAdapter(data);
                         mRecyclerView.setAdapter(adapter);
-                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
+                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListFragment.this));
                     }
                 })
                 .build()
