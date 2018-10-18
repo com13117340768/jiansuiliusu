@@ -1,4 +1,4 @@
-package com.ayunyi.mssyy.rw.icon;
+package com.yy.core.util.icon;
 
 import com.joanzapata.iconify.Icon;
 import com.joanzapata.iconify.IconFontDescriptor;

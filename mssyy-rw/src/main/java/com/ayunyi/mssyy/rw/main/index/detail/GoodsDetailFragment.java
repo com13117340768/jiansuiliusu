@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
+import com.ayunyi.mssyy.rw.main.RedWineBottomFragment;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -97,11 +98,11 @@ public class GoodsDetailFragment extends RedWineFragment implements
     void ClickFavor() {
         if (!isFavor) {
             Toast.makeText(getContext(), "点击了喜欢", Toast.LENGTH_SHORT).show();
-            mIconFavor.setBackgroundColor(getContext().getResources().getColor(R.color.app_main_color));
+            mIconFavor.setTextColor(Color.RED);
             isFavor = true;
         } else {
             Toast.makeText(getContext(), "取消了了喜欢", Toast.LENGTH_SHORT).show();
-            mIconFavor.setBackgroundColor(getContext().getResources().getColor(R.color.app_gay));
+            mIconFavor.setTextColor(getContext().getResources().getColor(R.color.we_chat_black));
             isFavor = false;
         }
     }
@@ -110,6 +111,9 @@ public class GoodsDetailFragment extends RedWineFragment implements
     @OnClick(R2.id.icon_shop_cart)
     void ClickCat() {
         Toast.makeText(getContext(), "购物车商品个数为:" + getShopCount(), Toast.LENGTH_SHORT).show();
+
+        getSupportDelegate().start(RedWineBottomFragment.getInstance(3));
+
     }
 
 

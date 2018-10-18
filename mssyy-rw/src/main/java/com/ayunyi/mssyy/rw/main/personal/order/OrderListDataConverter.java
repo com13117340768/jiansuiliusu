@@ -19,7 +19,7 @@ public class OrderListDataConverter extends DataConverter {
         final JSONArray array = JSON.parseObject(getJsonData()).getJSONArray("data");
         final int size = array.size();
         for (int i = 0; i < size; i++) {
-            final JSONObject data = array.getJSONObject(i);
+             JSONObject data = array.getJSONObject(i);
             final String thumb = data.getString("thumb");
             final String title = data.getString("title");
             final int id = data.getInteger("id");

@@ -22,7 +22,6 @@ import com.yy.core.util.logger.FengLogger;
 /**
  * Created by ft on 2018/8/14.
  */
-@SuppressWarnings("UnusedAssignment")
 public class RefreshHandler implements
         SwipeRefreshLayout.OnRefreshListener,
         BaseQuickAdapter.RequestLoadMoreListener {
@@ -55,9 +54,19 @@ public class RefreshHandler implements
 
     private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
-        RedWine.getHandler().postDelayed(new Runnable() {
+//        RedWine.getHandler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                mAdapter.notifyDataSetChanged();
+//                REFRESH_LAYOUT.setRefreshing(false);
+//            }
+//        }, 1500);
+
+        REFRESH_LAYOUT.postDelayed(new Runnable() {
             @Override
             public void run() {
+                mAdapter.notifyDataSetChanged();
                 REFRESH_LAYOUT.setRefreshing(false);
             }
         }, 1500);

@@ -16,17 +16,16 @@ public class AddressDateConverter extends DataConverter {
 
     @Override
     public ArrayList<MultipleItemEntity> convert() {
-        final JSONArray array = JSON.parseObject(getJsonData()).getJSONArray("data");
-        final int size = array.size();
+        JSONArray array = JSON.parseObject(getJsonData()).getJSONArray("data");
+        int size = array.size();
         for (int i = 0; i < size; i++) {
-            JSONObject jsonObject = array.getJSONObject(i);
-            final JSONObject data = array.getJSONObject(i);
-            final int id = data.getInteger("id");
-            final String name = data.getString("name");
-            final String phone = data.getString("phone");
-            final String address = data.getString("address");
-            final boolean isDefault = data.getBoolean("default");
-            final MultipleItemEntity entity = MultipleItemEntity.builder()
+            JSONObject data = array.getJSONObject(i);
+            int id = data.getInteger("id");
+            String name = data.getString("name");
+            String phone = data.getString("phone");
+            String address = data.getString("address");
+            boolean isDefault = data.getBoolean("default");
+            MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setItemType(AddressItemType.ITEM_ADDRESS)
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.NAME, name)

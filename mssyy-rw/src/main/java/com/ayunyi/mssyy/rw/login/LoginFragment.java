@@ -18,9 +18,8 @@ import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.EcBottomFragment;
+import com.ayunyi.mssyy.rw.main.RedWineBottomFragment;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.orhanobut.logger.Logger;
 import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.net.RestClient;
 import com.yy.core.net.callback.IError;
@@ -36,6 +35,10 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * Created by ft on 2018/9/18.
  */
 public class LoginFragment extends RedWineFragment implements TextWatcher {
+
+
+    private int loginMode = 0;
+    private static final String LONGITUDE = "LONGITUDE";
 
 
     @BindView(R2.id.exit_clean_user)
@@ -91,7 +94,7 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
     void ExitClick() {
         //AlertToast("退出的点击事件");
         AlertToast("跳过登录界面");
-        getSupportDelegate().startWithPop(new EcBottomFragment());
+        getSupportDelegate().startWithPop(RedWineBottomFragment.getInstance(0));
     }
 
     @OnClick(R2.id.exit_clean_user)
@@ -132,8 +135,8 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Logger.json(response);
-                            SignHandler.onSignIn(response, signListener);
+                         //   Logger.json(response);
+                            SignHandler.onSignIn(response, signListener,loginMode);
                         }
                     })
                     .error(new IError() {
@@ -177,6 +180,15 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
         AlertToast("QQ快捷登录暂未接入");
     }
 
+
+    public static LoginFragment getInstence(int loginMode) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(LONGITUDE, loginMode);
+        LoginFragment loginFragment = new LoginFragment();
+        loginFragment.setArguments(bundle);
+        return loginFragment;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
@@ -186,6 +198,14 @@ public class LoginFragment extends RedWineFragment implements TextWatcher {
         }
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            loginMode = bundle.getInt(LONGITUDE);
+        }
+    }
 
     @Override
     public Object setLayout() {

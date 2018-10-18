@@ -1,10 +1,12 @@
 package com.ayunyi.mssyy.rw.main.personal.setup;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.yy.core.app.RedWine;
 import com.yy.core.fragments.RedWineFragment;
 
 /**
@@ -28,10 +30,11 @@ public class SystemClickListener extends SimpleClickListener {
             case 2:
                 DELEGATE.getSupportDelegate().start(bean.getDelegate());
                 break;
+            case 3:
+                Toast.makeText(RedWine.getApplicationContext(),"已是最新版本",Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
-
-
         }
 
     }

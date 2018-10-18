@@ -16,6 +16,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.yy.core.R;
 import com.yy.core.R2;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.util.logger.FengLogger;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -50,9 +51,6 @@ public abstract class BaseBottomFragment extends RedWineFragment implements View
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mIndexDelegate = setIndexDelegate();
-
         if (setClickColor() != 0) {
             mClickedColor = setClickColor();
         }
@@ -70,6 +68,9 @@ public abstract class BaseBottomFragment extends RedWineFragment implements View
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        mIndexDelegate = setIndexDelegate();
+        mCurrentDelegate = mIndexDelegate;
+
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
             LayoutInflater.from(getContext()).inflate(R.layout.botton_item_icon_text_layout, mBottomBar);
@@ -86,8 +87,9 @@ public abstract class BaseBottomFragment extends RedWineFragment implements View
                 itemTitle.setTextColor(mClickedColor);
             }
         }
-
         final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+
+        FengLogger.d("fengtao", "进入了BaseBottomFragment,mIndexDelegate=" + mIndexDelegate);
 
         getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }

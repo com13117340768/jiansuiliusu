@@ -6,6 +6,7 @@
 
     <!--suppress AndroidDomInspection -->
     <android.support.v7.widget.Toolbar
+        android:id="@+id/address_toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/holo_red_dark">
@@ -13,6 +14,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/icon_po_return"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="{icon-return}"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -36,6 +49,7 @@
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

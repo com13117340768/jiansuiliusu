@@ -3,14 +3,14 @@ package com.ssyy.example;
 import android.app.Application;
 
 import com.ayunyi.mssyy.rw.database.DatabaseManager;
-import com.ayunyi.mssyy.rw.icon.FontECModule;
-import com.ayunyi.mssyy.rw.icon.FontRWModule;
 import com.facebook.stetho.Stetho;
 import com.ft.example.R;
 import com.hss01248.dialog.StyledDialog;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.yy.core.app.RedWine;
 import com.yy.core.net.interceptors.DebugInterceptor;
+import com.yy.core.util.icon.FontRedWineModule;
+import com.yy.core.util.icon.FontRWModule;
 
 public class ExampleApp extends Application {
     @Override
@@ -21,7 +21,7 @@ public class ExampleApp extends Application {
                 .withApiHost("http://192.168.2.102:8080/RestServer/api/")
                 //     .withApiHost("http://jiu.ayunyi.com/api/")
                 .withIcon(new FontAwesomeModule())
-                .withIcon(new FontECModule())
+                .withIcon(new FontRedWineModule())
                 .withIcon(new FontRWModule())
                 .withLoaderDelayed(500)
                 .withInterceptor(new DebugInterceptor("test", R.raw.fengtao))

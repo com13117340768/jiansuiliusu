@@ -7,12 +7,17 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ayunyi.mssyy.rw.main.discover.fragmentation.DetailFragment;
+import com.ayunyi.mssyy.rw.main.index.detail.GoodsDetailFragment;
+import com.ayunyi.mssyy.rw.main.personal.address.detaiaddress.DetailAddressFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyItemDialogListener;
 import com.yy.core.app.RedWine;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.net.RestClient;
+import com.yy.core.net.callback.ISuccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +40,7 @@ public class ShopItemClickListener extends SimpleClickListener {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        mLatteFragment.start(new GoodsDetailFragment());
     }
 
     @Override
@@ -53,7 +58,29 @@ public class ShopItemClickListener extends SimpleClickListener {
         StyledDialog.buildIosSingleChoose(list, new MyItemDialogListener() {
             @Override
             public void onItemClick(CharSequence charSequence, int i) {
-                showToast("" + i);
+                switch (i) {
+                    case 0:
+
+                        break;
+                    case 1:
+                        RestClient.builder()
+                                .url("coupon.php")
+                                .loader(mLatteFragment.getContext())
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        showToast("添加收藏夹成功!");
+                                    }
+                                })
+                                .build()
+                                .get();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        break;
+                }
+
             }
         })
                 .show();

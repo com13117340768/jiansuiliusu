@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_gravity="center"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp"
+    card_view:cardUseCompatPadding="true">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            >
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/coupon_tv_money_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通用红包"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginLeft="15dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="@android:color/black"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/coupon_tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="5"
+                android:textSize="50sp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:textColor="@android:color/holo_red_dark"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:layout_toLeftOf="@+id/coupon_tv_money"
+                android:gravity="bottom"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="22sp"
+                android:layout_marginRight="5dp"
+                android:layout_alignBaseline="@+id/coupon_tv_money"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            >
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/coupon_tv_date_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有效期至2018.12.30"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:textColor="#323232"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/coupon_tv_money_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="满50可用"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:textColor="#323232"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/app_background" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/coupon_tv_remind"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:text="须在使用期限前使用。且限手机号为17717056252使用。"
+            android:gravity="start|center"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+</android.support.v7.widget.CardView>

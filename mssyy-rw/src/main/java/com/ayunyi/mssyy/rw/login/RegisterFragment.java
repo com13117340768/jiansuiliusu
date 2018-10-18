@@ -86,7 +86,7 @@ public class RegisterFragment extends RedWineFragment {
     }
 
     private void SetNull(){
-         mName.setText("");
+        mName.setText("");
         mEmail.setText("");
         mPhone.setText("");
         mPassword.setText("");

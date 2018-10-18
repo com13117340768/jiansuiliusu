@@ -2,14 +2,17 @@ package com.ayunyi.mssyy.rw.main.personal;
 
 import android.view.View;
 
+import com.ayunyi.mssyy.rw.main.personal.setup.SystemSetupFragment;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
+import com.ayunyi.mssyy.rw.main.personal.user.collection.CollectionFragment;
+import com.ayunyi.mssyy.rw.main.personal.user.coupon.CouponFragment;
+import com.ayunyi.mssyy.rw.main.personal.user.integral.IntegralFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.yy.core.fragments.RedWineFragment;
 
-/**
- * Created by 傅令杰
- */
+import me.yokeyword.fragmentation.ISupportFragment;
+
 
 public class PersonalClickListener extends SimpleClickListener {
 
@@ -28,7 +31,16 @@ public class PersonalClickListener extends SimpleClickListener {
                 DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
                 break;
             case 2:
-                DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
+                DELEGATE.getParentDelegate().getSupportDelegate().start(SystemSetupFragment.getInstance("系统设置"));
+                break;
+            case 3:
+                DELEGATE.getParentDelegate().getSupportDelegate().start(CollectionFragment.getInstance("我的收藏"));
+                break;
+            case 4:
+                DELEGATE.getParentDelegate().getSupportDelegate().start(IntegralFragment.getInstance("我的会员积分"));
+                break;
+            case 5:
+                DELEGATE.getParentDelegate().getSupportDelegate().start(CouponFragment.getInstance("喝了么商家优惠券"));
                 break;
             default:
                 break;
@@ -49,4 +61,5 @@ public class PersonalClickListener extends SimpleClickListener {
     public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
 
     }
+
 }

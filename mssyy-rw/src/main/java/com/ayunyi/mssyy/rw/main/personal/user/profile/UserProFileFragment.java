@@ -152,7 +152,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
         //设置recyclerView
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        ListAdapter listAdapter = new ListAdapter(listBeans);
+        ListAdapter listAdapter = new ListAdapter(listBeans,null);
         recyclerView.setAdapter(listAdapter);
         recyclerView.addOnItemTouchListener(new UserProfileClickListener(this));
     }
@@ -200,7 +200,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
         } else {
             //执行登录逻辑
             getSupportDelegate().pop();
-            getSupportDelegate().start(new LoginFragment());
+            getSupportDelegate().start(LoginFragment.getInstence(4));
         }
 
     }

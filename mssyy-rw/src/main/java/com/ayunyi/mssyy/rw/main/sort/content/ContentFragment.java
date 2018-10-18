@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
+import com.ayunyi.mssyy.rw.main.sort.SortFragment;
 import com.yy.core.fragments.RedWineFragment;
 import com.yy.core.net.RestClient;
 
@@ -68,6 +69,8 @@ public class ContentFragment extends RedWineFragment {
                     final SectionAdapter sectionAdapter = new SectionAdapter(R.layout.item_section_content,
                             R.layout.item_section_header, mData);
                     mRecyclerView.setAdapter(sectionAdapter);
+                    SortFragment sortFragment = (SortFragment) getParentFragment();
+                    mRecyclerView.addOnItemTouchListener(new ContentItemClickListener(sortFragment));
                 })
                 .failure(() -> {
                 })

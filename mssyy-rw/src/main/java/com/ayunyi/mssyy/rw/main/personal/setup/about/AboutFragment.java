@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.alibaba.fastjson.JSON;
@@ -20,8 +21,11 @@ import butterknife.BindView;
  */
 public class AboutFragment extends RedWineFragment {
 
-      @BindView(R2.id.tv_info)
+    @BindView(R2.id.tv_info)
     AppCompatTextView mTextView = null;
+
+    @BindView(R2.id.toolbar)
+    Toolbar toolbar = null;
 
     @Override
     public Object setLayout() {
@@ -30,6 +34,9 @@ public class AboutFragment extends RedWineFragment {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        toolbar.setTitle("简介");
+        initToolbarNav(toolbar);
+
         RestClient.builder()
                 .url("about.php")
                 .loader(getContext())

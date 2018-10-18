@@ -1,9 +1,13 @@
 package com.ayunyi.mssyy.rw.main.personal.user;
 
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.joanzapata.iconify.Icon;
 import com.yy.core.fragments.RedWineFragment;
+import com.yy.core.util.icon.RWIcons;
 
 /**
  * Created by ft on 2018/9/13.
@@ -13,13 +17,17 @@ public class ListBean implements MultiItemEntity {
     private String mImageUrl = null;
     private String mText = null;
     private String mValue = null;
+    private RWIcons icon = null;
+    private int color = 0;
     private int mId = 0;
     private int tag = 0;
     private RedWineFragment mDelegate = null;
 
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener = null;
 
-    ListBean(int mItemType, String mImageUrl, String mText, String mValue, int mId, RedWineFragment mDelegate, int mTag, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
+    ListBean(int color,RWIcons icon, int mItemType, String mImageUrl, String mText, String mValue, int mId, RedWineFragment mDelegate, int mTag, CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener) {
+        this.color = color;
+        this.icon = icon;
         this.mItemType = mItemType;
         this.mImageUrl = mImageUrl;
         this.mText = mText;
@@ -52,6 +60,14 @@ public class ListBean implements MultiItemEntity {
         return mValue;
     }
 
+    public RWIcons getIcon() {
+        return icon;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
     public int getId() {
         return mId;
     }
@@ -70,6 +86,8 @@ public class ListBean implements MultiItemEntity {
     }
 
     public static final class Builder {
+        private int color = 323232;
+        private RWIcons icon = null;
         private int tag = 0;
         private int id = 0;
         private int itemType = 0;
@@ -81,6 +99,15 @@ public class ListBean implements MultiItemEntity {
 
         public Builder setId(int id) {
             this.id = id;
+            return this;
+        }
+        public Builder setIcon(RWIcons icon) {
+            this.icon = icon;
+            return this;
+        }
+
+        public Builder setColor(int color) {
+            this.color = color;
             return this;
         }
 
@@ -120,7 +147,7 @@ public class ListBean implements MultiItemEntity {
         }
 
         public ListBean build() {
-            return new ListBean(itemType, imageUrl, text, value, id, delegate, tag, onCheckedChangeListener);
+            return new ListBean(color,icon,itemType, imageUrl, text, value, id, delegate, tag, onCheckedChangeListener);
         }
     }
 }

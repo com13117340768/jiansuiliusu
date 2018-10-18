@@ -228,5 +228,7 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
         DELEGATE.start(toFragment, launchMode);
     }
 
-
+    public void startForResult(final ISupportFragment toFragment, @ISupportFragment.LaunchMode int launchMode) {
+        DELEGATE.startForResult(toFragment, launchMode);
+    }
 }

@@ -10,10 +10,8 @@ import com.ayunyi.mssyy.rw.launcher.OnLauncherFinishTag;
 import com.ayunyi.mssyy.rw.login.FromWhereOnLoginTag;
 import com.ayunyi.mssyy.rw.login.ISignListener;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
-import com.ayunyi.mssyy.rw.main.EcBottomFragment;
-import com.ayunyi.mssyy.rw.main.index.search.SearchFragment;
+import com.ayunyi.mssyy.rw.main.RedWineBottomFragment;
 import com.yy.core.activities.ProxyActivity;
-import com.yy.core.app.IUserChecker;
 import com.yy.core.fragments.RedWineFragment;
 
 
@@ -38,9 +36,10 @@ public class RedWineActivity extends ProxyActivity implements ISignListener, ILa
     public void onSignInSuccess(FromWhereOnLoginTag tag) {
         switch (tag) {
             case INDEX:
-                getSupportDelegate().startWithPop(new EcBottomFragment());
+                getSupportDelegate().start(RedWineBottomFragment.getInstance(0));
                 break;
             case USER:
+                getSupportDelegate().start(RedWineBottomFragment.getInstance(4));
                 break;
             default:
                 break;
@@ -56,11 +55,12 @@ public class RedWineActivity extends ProxyActivity implements ISignListener, ILa
     public void OnLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag) {
             case LOGINED:
-                getSupportDelegate().startWithPop(new EcBottomFragment());
+                getSupportDelegate().startWithPop(RedWineBottomFragment.getInstance(0));
                 break;
             case NOT_LOGNED:
                 getSupportDelegate().startWithPop(new LoginFragment());
                 break;
+
             default:
                 break;
         }

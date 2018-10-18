@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
-import com.ayunyi.mssyy.rw.main.EcBottomFragment;
+import com.ayunyi.mssyy.rw.main.RedWineBottomFragment;
 import com.ayunyi.mssyy.rw.pay.IAlPayResultListener;
 import com.ayunyi.mssyy.rw.pay.MPay;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -211,7 +211,7 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        EcBottomFragment ecBottomDelegate = getParentDelegate();
+        RedWineBottomFragment ecBottomDelegate = getParentDelegate();
         mRecyclerView.addOnItemTouchListener(ShopItemClickListener.create(ecBottomDelegate));
         double mTotalPrice = mAdapter.getTotalPrice();
         mTvTotalPrice.setText(String.valueOf(mTotalPrice));

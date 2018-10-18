@@ -11,4 +11,5 @@ public class ListItemType {
     public static final int ITEM_SWITCH = 22;
     public static final int ITEM_NAME = 23;
     public static final int ITEM_USER_PROFILE = 24;
+    public static final int ITEM_USER_HOME = 25;
 }

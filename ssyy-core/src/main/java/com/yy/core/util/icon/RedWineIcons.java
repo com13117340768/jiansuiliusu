@@ -1,8 +1,8 @@
-package com.ayunyi.mssyy.rw.icon;
+package com.yy.core.util.icon;
 
 import com.joanzapata.iconify.Icon;
 
-public enum  ECIcons implements Icon{
+public enum RedWineIcons implements Icon{
     icon_scan('\ue606'),
     icon_ali_pay('\ue606'),
     qr_code('\ue602'),
@@ -11,7 +11,7 @@ public enum  ECIcons implements Icon{
 
     private char aChar;
 
-    ECIcons(char aChar) {
+    RedWineIcons(char aChar) {
         this.aChar = aChar;
     }
 

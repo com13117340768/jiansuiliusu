@@ -1,10 +1,11 @@
 package com.ayunyi.mssyy.rw.main;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.ayunyi.mssyy.rw.main.cart.ShopCartFragment;
 import com.ayunyi.mssyy.rw.main.discover.DiscoverFragment;
-import com.ayunyi.mssyy.rw.main.discover.fragmentation.SecondFragment;
 import com.ayunyi.mssyy.rw.main.index.IndexFragment;
 import com.ayunyi.mssyy.rw.main.personal.PersonalFragment;
 import com.ayunyi.mssyy.rw.main.sort.SortFragment;
@@ -17,7 +18,30 @@ import java.util.LinkedHashMap;
 /**
  * Created by ft on 2018/8/13.
  */
-public class EcBottomFragment extends BaseBottomFragment {
+public class RedWineBottomFragment extends BaseBottomFragment {
+
+
+    private static final String MODE = "startFragmentMode";
+    public int mode = 0;
+
+    public static RedWineBottomFragment getInstance(int startMode) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(MODE, startMode);
+        RedWineBottomFragment fragment = new RedWineBottomFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mode = bundle.getInt(MODE);
+        }
+    }
+
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemFragment> setItems() {
         final LinkedHashMap<BottomTabBean, BottomItemFragment> items = new LinkedHashMap<>();
@@ -31,7 +55,7 @@ public class EcBottomFragment extends BaseBottomFragment {
 
     @Override
     public int setIndexDelegate() {
-        return 0;
+        return mode;
     }
 
     @Override

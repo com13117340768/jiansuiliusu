@@ -6,5 +6,5 @@ package com.ayunyi.mssyy.rw.launcher;
 @SuppressWarnings("SpellCheckingInspection")
 public enum OnLauncherFinishTag {
     LOGINED,
-    NOT_LOGNED
+    NOT_LOGNED,
 }
