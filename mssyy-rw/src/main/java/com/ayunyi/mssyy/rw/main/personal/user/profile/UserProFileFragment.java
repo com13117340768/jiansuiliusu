@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,13 +14,12 @@ import android.view.View;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
-import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
+import com.ayunyi.mssyy.rw.main.UserPeresKeys;
 import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
 import com.ayunyi.mssyy.rw.main.personal.user.settings.ISubmitReName;
 import com.ayunyi.mssyy.rw.main.personal.user.settings.NameFragment;
-import com.bumptech.glide.Glide;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.yy.core.app.AccountManager;
@@ -89,7 +87,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
         nameDelegate.setIReNameLister(this);
         view = rootView;
         ListBean image;
-        String uriPah = RedWinePreference.getCustomAppProfile(UserPerpesKeys.URI_PATH);
+        String uriPah = RedWinePreference.getCustomAppProfile(UserPeresKeys.URI_PATH);
         if (!uriPah.isEmpty()) {
             image = new ListBean.Builder()
                     .setId(UserProfileClickListener.image)
@@ -108,7 +106,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
         }
         ListBean name;
 
-        String uName = RedWinePreference.getCustomAppProfile(UserPerpesKeys.USER_NAME);
+        String uName = RedWinePreference.getCustomAppProfile(UserPeresKeys.USER_NAME);
         if (!uName.isEmpty()) {
             name = new ListBean.Builder()
                     .setId(UserProfileClickListener.name)
@@ -160,7 +158,7 @@ public class UserProFileFragment extends RedWineFragment implements ISubmitReNam
     @Override
     public void submitReName(String rename) {
         final AppCompatTextView textView = view.findViewById(R.id.tv_arrow_value_one);
-        RedWinePreference.addCustomAppProfile(UserPerpesKeys.USER_NAME, rename);
+        RedWinePreference.addCustomAppProfile(UserPeresKeys.USER_NAME, rename);
         textView.setText(rename);
     }
 

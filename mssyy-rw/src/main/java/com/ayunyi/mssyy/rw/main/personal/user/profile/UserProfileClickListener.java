@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.ayunyi.mssyy.rw.R;
-import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
+import com.ayunyi.mssyy.rw.main.UserPeresKeys;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -75,7 +75,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                                                     public void onSuccess(String response) {
                                                         //获取更新后的用户信息，然后更新本地数据库
                                                         Toast.makeText(DELEGATE.getContext(), "头像已保存数据库", Toast.LENGTH_SHORT).show();
-                                                        RedWinePreference.addCustomAppProfile(UserPerpesKeys.URI_PATH, uri.getPath());
+                                                        RedWinePreference.addCustomAppProfile(UserPeresKeys.URI_PATH, uri.getPath());
                                                     }
                                                 })
                                                 .build()

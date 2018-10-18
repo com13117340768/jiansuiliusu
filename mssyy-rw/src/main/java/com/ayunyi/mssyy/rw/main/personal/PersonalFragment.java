@@ -1,6 +1,5 @@
 package com.ayunyi.mssyy.rw.main.personal;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,21 +13,17 @@ import android.widget.Toast;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
-import com.ayunyi.mssyy.rw.main.UserPerpesKeys;
+import com.ayunyi.mssyy.rw.main.UserPeresKeys;
 import com.ayunyi.mssyy.rw.main.personal.address.AddressFragment;
 import com.ayunyi.mssyy.rw.main.personal.order.OrderListFragment;
 import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
-import com.ayunyi.mssyy.rw.main.personal.user.coupon.CouponFragment;
 import com.ayunyi.mssyy.rw.main.personal.user.profile.UserProFileFragment;
-import com.ayunyi.mssyy.rw.main.personal.setup.SystemSetupFragment;
 import com.bumptech.glide.Glide;
 import com.yy.core.app.AccountManager;
 import com.yy.core.fragments.bottom.BottomItemFragment;
-import com.yy.core.util.icon.FontRedWineModule;
 import com.yy.core.util.icon.RWIcons;
-import com.yy.core.util.icon.RedWineIcons;
 import com.yy.core.util.sharepreference.RedWinePreference;
 
 import java.util.ArrayList;
@@ -197,7 +192,7 @@ public class PersonalFragment extends BottomItemFragment {
         super.onSupportVisible();
 
         if (CheckLoginState()) {
-            String uriPah = RedWinePreference.getCustomAppProfile(UserPerpesKeys.URI_PATH);
+            String uriPah = RedWinePreference.getCustomAppProfile(UserPeresKeys.URI_PATH);
             if (!uriPah.isEmpty()) {
                 Glide.with(this)
                         .load(uriPah)
@@ -205,7 +200,7 @@ public class PersonalFragment extends BottomItemFragment {
             } else {
                 uPortImageView.setImageResource(R.drawable.not_logged_in);
             }
-            String uName = RedWinePreference.getCustomAppProfile(UserPerpesKeys.USER_NAME);
+            String uName = RedWinePreference.getCustomAppProfile(UserPeresKeys.USER_NAME);
             if (!uName.isEmpty()) {
                 uNameTextView.setText(uName);
             } else {
