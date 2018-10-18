@@ -8,4 +8,5 @@ public class UserPerpesKeys {
 
     public static final String URI_PATH = "URI_PATH";
     public static final String USER_NAME = "USER_NAME";
+
 }
