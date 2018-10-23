@@ -124,7 +124,7 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
         createOrder();
     }
 
-    //创建订单，注意，和支付是没有关系的
+    //创建订单
     private void createOrder() {
         final String orderUrl = "shop_cart_count.php";
         final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();

@@ -51,7 +51,11 @@
 
         <activity
             android:name="com.ssyy.example.Main2Activity"
-            android:theme="@style/AppT"></activity>
+            android:theme="@style/AppT" />
+
+        <activity
+            android:name="com.ayunyi.mssyy.rw.main.personal.user.profile.PicturePreviewActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

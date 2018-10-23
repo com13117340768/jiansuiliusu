@@ -124,5 +124,7 @@ dependencies {
 
     //GreenDao
     api 'org.greenrobot:greendao:3.2.2'
+    //图片加载放大
+    api 'com.github.SuperKotlin:PictureViewer:2.0.1'
 
 }

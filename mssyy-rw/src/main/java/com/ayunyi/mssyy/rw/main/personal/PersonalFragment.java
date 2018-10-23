@@ -1,15 +1,19 @@
 package com.ayunyi.mssyy.rw.main.personal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.SuperKotlin.pictureviewer.ImagePagerActivity;
+import com.SuperKotlin.pictureviewer.PictureConfig;
 import com.ayunyi.mssyy.rw.R;
 import com.ayunyi.mssyy.rw.R2;
 import com.ayunyi.mssyy.rw.login.LoginFragment;
@@ -19,6 +23,7 @@ import com.ayunyi.mssyy.rw.main.personal.order.OrderListFragment;
 import com.ayunyi.mssyy.rw.main.personal.user.ListAdapter;
 import com.ayunyi.mssyy.rw.main.personal.user.ListBean;
 import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
+import com.ayunyi.mssyy.rw.main.personal.user.profile.PicturePreviewActivity;
 import com.ayunyi.mssyy.rw.main.personal.user.profile.UserProFileFragment;
 import com.bumptech.glide.Glide;
 import com.yy.core.app.AccountManager;
@@ -26,8 +31,12 @@ import com.yy.core.fragments.bottom.BottomItemFragment;
 import com.yy.core.util.icon.RWIcons;
 import com.yy.core.util.sharepreference.RedWinePreference;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -70,14 +79,23 @@ public class PersonalFragment extends BottomItemFragment {
         startOrderListByType();
     }
 
-
     @OnClick(R2.id.img_user_avatar)
-    void OnClickImage() {
+    void OnClickImage()  {
         if (CheckLoginState()) {
-            getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+            //     getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+            String uriPah = RedWinePreference.getCustomAppProfile(UserPeresKeys.URI_PATH);
+            if (TextUtils.isEmpty(uriPah)){
+            }
+            Intent intent = new Intent();
+            intent.setClass(getProxyActivity(), PicturePreviewActivity.class);
+            intent.putExtra("url", uriPah);
+            startActivity(intent);
         } else {
             getParentDelegate().getSupportDelegate().start(LoginFragment.getInstence(4));
+
         }
+
+
     }
 
 
@@ -154,7 +172,7 @@ public class PersonalFragment extends BottomItemFragment {
         //设置recyclerView
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRvSettings.setLayoutManager(layoutManager);
-        ListAdapter listAdapter = new ListAdapter(dataBeans,this);
+        ListAdapter listAdapter = new ListAdapter(dataBeans, this);
         mRvSettings.setAdapter(listAdapter);
         mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }

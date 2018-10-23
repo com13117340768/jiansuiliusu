@@ -59,9 +59,14 @@ public class AddressAdapter extends MultipleRecyclerAdapter {
                     public void onFirst() {
                         RestClient.builder()
                                 .url("address.php")
-                                .loader(RedWine.getApplicationContext())
+                                .loader(redWineFragment.getContext())
                                 .params("id", id)
-                                .success(response -> remove(holder.getLayoutPosition()))
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        remove(holder.getLayoutPosition());
+                                    }
+                                })
                                 .build()
                                 .post();
                     }
