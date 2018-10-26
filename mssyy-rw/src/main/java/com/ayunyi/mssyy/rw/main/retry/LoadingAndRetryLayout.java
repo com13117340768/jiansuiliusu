@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 /**
- * Created by zhy on 15/8/26.
+ * Created by hongyang on 15/8/26.
  */
 public class LoadingAndRetryLayout extends FrameLayout
 {

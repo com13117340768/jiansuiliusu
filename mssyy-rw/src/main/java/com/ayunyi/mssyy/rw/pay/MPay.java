@@ -71,7 +71,7 @@ public class MPay implements View.OnClickListener {
     }
 
     private void alPay(int orderId) {
-     //   final String singUrl = "你的服务端支付地址" + orderId;
+     //   final String singUrl = "服务端支付地址" + orderId;
         final String singUrl = "shop_cart_count.php";
 
         //获取签名字符串
@@ -83,7 +83,7 @@ public class MPay implements View.OnClickListener {
                   //      final String paySign = JSON.parseObject(response).getString("result");
                         final String paySign = "123456789";
                         Log.d("PAY_SIGN", paySign);
-                        //必须是异步的调用客户端支付接口
+                        //异步调用客户端支付接口
                         final PayAsyncTask payAsyncTask = new PayAsyncTask(mActivity, mIAlPayResultListener);
                         payAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, paySign);
                     }
@@ -94,7 +94,7 @@ public class MPay implements View.OnClickListener {
 
     private void weChatPay(int orderId) {
        /* LatteLoader.stopLoading();
-        final String weChatPrePayUrl = "你的服务端微信预支付地址" + orderId;
+        final String weChatPrePayUrl = "服务端微信预支付地址" + orderId;
         Log.d("WX_PAY", weChatPrePayUrl);
 
         final IWXAPI iwxapi = LatteWeChat.getInstance().getWXAPI();

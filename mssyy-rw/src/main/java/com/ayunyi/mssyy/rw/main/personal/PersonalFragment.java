@@ -26,6 +26,8 @@ import com.ayunyi.mssyy.rw.main.personal.user.ListItemType;
 import com.ayunyi.mssyy.rw.main.personal.user.profile.PicturePreviewActivity;
 import com.ayunyi.mssyy.rw.main.personal.user.profile.UserProFileFragment;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yy.core.app.AccountManager;
 import com.yy.core.fragments.bottom.BottomItemFragment;
 import com.yy.core.util.icon.RWIcons;
@@ -49,6 +51,7 @@ public class PersonalFragment extends BottomItemFragment {
 
     private long mExitTime = 0;
     private final static long EXIT_TIME = 2000L;
+    private static final String imageUrl = "http://img2.woyaogexing.com/2017/09/02/d5c9dceec0060119%21400x400_big.jpg";
 
     @BindView(R2.id.rl_harder_bg)
     RelativeLayout relativeLayout = null;
@@ -79,12 +82,19 @@ public class PersonalFragment extends BottomItemFragment {
         startOrderListByType();
     }
 
+    private static final RequestOptions OPTIONS = new RequestOptions()
+            .centerCrop()
+            .placeholder(R.drawable.cat)
+            .diskCacheStrategy(DiskCacheStrategy.NONE);
+
     @OnClick(R2.id.img_user_avatar)
-    void OnClickImage()  {
+    void OnClickImage() {
         if (CheckLoginState()) {
             //     getParentDelegate().getSupportDelegate().start(new UserProFileFragment());
+
             String uriPah = RedWinePreference.getCustomAppProfile(UserPeresKeys.URI_PATH);
-            if (TextUtils.isEmpty(uriPah)){
+            if (TextUtils.isEmpty(uriPah)) {
+                uriPah = imageUrl;
             }
             Intent intent = new Intent();
             intent.setClass(getProxyActivity(), PicturePreviewActivity.class);
@@ -92,7 +102,6 @@ public class PersonalFragment extends BottomItemFragment {
             startActivity(intent);
         } else {
             getParentDelegate().getSupportDelegate().start(LoginFragment.getInstence(4));
-
         }
 
 
@@ -180,6 +189,12 @@ public class PersonalFragment extends BottomItemFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+
+        Glide.with(this)
+                .load(R.drawable.cat)
+                .apply(OPTIONS)
+                .into(uPortImageView);
+
     }
 
     @Override
@@ -214,9 +229,10 @@ public class PersonalFragment extends BottomItemFragment {
             if (!uriPah.isEmpty()) {
                 Glide.with(this)
                         .load(uriPah)
+                        .apply(OPTIONS)
                         .into(uPortImageView);
             } else {
-                uPortImageView.setImageResource(R.drawable.not_logged_in);
+                uPortImageView.setImageResource(R.drawable.cat);
             }
             String uName = RedWinePreference.getCustomAppProfile(UserPeresKeys.USER_NAME);
             if (!uName.isEmpty()) {
@@ -226,7 +242,7 @@ public class PersonalFragment extends BottomItemFragment {
             }
 
         } else {
-            uPortImageView.setImageResource(R.drawable.not_logged_in);
+            uPortImageView.setImageResource(R.drawable.cat);
             uNameTextView.setText("点击登录");
         }
     }
